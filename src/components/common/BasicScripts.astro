@@ -70,7 +70,7 @@ import { UI } from 'astrowind:config';
       }
 
       Observer.removeAnimationDelay();
-      
+
       document.documentElement.classList.toggle('dark');
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
     });
@@ -262,7 +262,7 @@ import { UI } from 'astrowind:config';
           el.style.transitionDelay = '';
           el.style.animationDelay = '';
         }
-        });
+      });
     },
   };
 
