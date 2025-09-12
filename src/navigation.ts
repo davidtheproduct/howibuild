@@ -11,7 +11,7 @@ export const headerData = {
       href: getPermalink('/about'),
     },
   ],
-  actions: [{ text: 'Contact', href: 'mailto:hello@davidtheproduct.com' }],
+  actions: [{ text: 'Contact', href: 'mailto:hello@davidtheproduct.com', target: '_blank' }],
 };
 
 export const footerData = {

@@ -52,12 +52,12 @@ Send your Markdown file to hello@davidtheproduct.com or submit a pull request.
 
 The only requirement: it has to be real, technical, and useful to fellow builders.
 
-## No Bullshit Zone
+## Reality Check
 
 You won't find:
 - Growth hacking listicles
 - "10 Ways to Scale Your Startup" posts
-- Motivational founder porn
+- Motivational founder fluff
 - Content marketing disguised as advice
 
 You will find:

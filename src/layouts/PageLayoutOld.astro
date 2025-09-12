@@ -1,10 +1,10 @@
----
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 
 import { headerData, footerData } from '~/navigation';
+
 import type { MetaData } from '~/types';
 
 export interface Props {
@@ -19,7 +19,7 @@ const { metadata } = Astro.props;
     <Announcement />
   </slot>
   <slot name="header">
-    <Header {...headerData} isSticky={true} showRssFeed={true} showToggleTheme={true} />
+    <Header {...headerData} isSticky showRssFeed showToggleTheme />
   </slot>
   <main>
     <slot />
