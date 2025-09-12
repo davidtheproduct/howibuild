@@ -1,0 +1,169 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Content from '~/components/widgets/Content.astro';
+
+const metadata = {
+  title: 'Get Involved — howibuild.ai',
+  description: 'Want to share your build story? Join the community of builders documenting their journey.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Section -->
+  <Hero>
+    <Fragment slot="title">
+      Share your <span class="text-cyan-400 dark:text-cyan-400">build story</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Have a war story from the trenches? A technical deep dive worth sharing? 
+      Join the community of builders documenting the real work of shipping products.
+    </Fragment>
+  </Hero>
+
+  <!-- How to Submit -->
+  <Steps2
+    title="How to Get Your Story Published"
+    subtitle="Simple process, no gatekeeping. If it's real and it helps builders, it belongs here."
+    items={[
+      {
+        title: 'Write Your Story',
+        description: 'Create a Markdown file with your build log, technical deep dive, or founder lesson. Be specific, be honest, include code snippets if relevant.',
+        icon: 'tabler:pencil',
+      },
+      {
+        title: 'Submit Your Post',
+        description: 'Send your .md file to hello@davidtheproduct.com or submit a pull request on GitHub. Include a brief intro about yourself and your project.',
+        icon: 'tabler:send',
+      },
+      {
+        title: 'Quick Review',
+        description: "I'll review for the community guidelines (see below), maybe suggest minor edits for clarity, then publish. Usually within 48 hours.",
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Go Live',
+        description: "Your post goes live with full attribution. You'll get the link to share with your network. Welcome to the build log community!",
+        icon: 'tabler:rocket',
+      },
+    ]}
+  />
+
+  <!-- Community Guidelines -->
+  <Features3
+    title="Community Guidelines"
+    subtitle="Keep it real, keep it helpful, keep it respectful."
+    columns={3}
+    items={[
+      {
+        title: 'Keep it PC & Family Friendly',
+        description: 'Professional language only. Your mom, your kids, and your investors might read this. Make them proud.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Lift People Up',
+        description: "Share what worked, what didn't, and what you learned. No throwing shade at competitors or colleagues.",
+        icon: 'tabler:arrow-up-circle',
+      },
+      {
+        title: 'Be Technically Honest',
+        description: 'Share real metrics, real code, real problems. No inflated numbers or success theater.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Show Your Work',
+        description: 'Include code snippets, architecture diagrams, or screenshots when relevant. Specificity helps everyone.',
+        icon: 'tabler:presentation',
+      },
+      {
+        title: 'Respect Privacy',
+        description: 'No sharing private customer data, internal company info, or anything that could harm others.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Add Value',
+        description: 'Every post should teach something or share an insight. Ask yourself: will this help another builder?',
+        icon: 'tabler:bulb',
+      },
+    ]}
+  />
+
+  <!-- What Makes a Good Post -->
+  <Content
+    items={[
+      {
+        title: 'Technical Deep Dives',
+        description: 'How you solved a specific problem, implemented a feature, or debugged a nasty issue.',
+      },
+      {
+        title: 'Architecture Decisions',
+        description: 'Why you chose certain tools, frameworks, or approaches—and how it worked out.',
+      },
+      {
+        title: 'Failure Post-Mortems',
+        description: 'What broke, why it broke, and what you learned. These are often the most valuable posts.',
+      },
+      {
+        title: 'Launch Stories',
+        description: 'The real timeline of shipping a feature or product, including the last-minute scrambles.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        What Makes a Great Build Log?
+      </h3>
+      
+      <p class="text-muted dark:text-gray-300 mb-4">
+        The best posts are specific, technical, and honest. They show the actual work—the debugging sessions, 
+        the architecture debates, the "oh shit" moments when you realize you've been doing it wrong.
+      </p>
+      
+      <p class="text-muted dark:text-gray-300">
+        Don't worry about perfect writing. Worry about sharing something real that will help another builder 
+        avoid your mistakes or learn from your wins. That's what this community is about.
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- CTA -->
+  <Content
+    isReversed
+    isAfterContent
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Ready to Share Your Story?
+      </h3>
+      
+      <p class="text-muted dark:text-gray-300 mb-6">
+        Don't overthink it. If you've built something, broken something, or learned something 
+        in the last week, you have a story worth sharing.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a 
+          href="mailto:hello@davidtheproduct.com?subject=Build%20Log%20Submission" 
+          class="btn-primary"
+        >
+          Submit via Email
+        </a>
+        <a 
+          href="https://github.com/davidtheproduct/howibuild" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          Submit via GitHub
+        </a>
+      </div>
+    </Fragment>
+  </Content>
+</Layout>

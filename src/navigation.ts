@@ -10,6 +10,10 @@ export const headerData = {
       text: 'About',
       href: getPermalink('/about'),
     },
+    {
+      text: 'Get Involved',
+      href: getPermalink('/get-involved'),
+    },
   ],
   actions: [{ text: 'Contact', href: 'mailto:hello@davidtheproduct.com', target: '_blank' }],
 };
