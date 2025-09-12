@@ -10,6 +10,7 @@ import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
+import PostHog from '~/components/posthog.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 
 // Comment the line below to disable View Transitions
@@ -35,6 +36,7 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <PostHog />
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />

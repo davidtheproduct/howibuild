@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: howibuild.ai
+  site: 'https://howibuild.ai'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: howibuild.ai
+    template: '%s — howibuild.ai'
+  description: "Build logs and founder lessons from the trenches. Real-time insights for solo founders, product operators, and technically minded builders."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: howibuild.ai
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -69,4 +69,4 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'dark:only' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
