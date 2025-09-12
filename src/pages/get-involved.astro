@@ -60,16 +60,16 @@ const metadata = {
     items={[
       {
         title: 'Keep it PC & Family Friendly',
-        description: 'Professional language only. Your mom, your kids, and your investors might read this. Make them proud.',
+        description: 'Professional language only. Your kids, your parents, and your investors might read this. Make them proud!',
         icon: 'tabler:heart',
       },
       {
-        title: 'Lift People Up',
-        description: "Share what worked, what didn't, and what you learned. No throwing shade at competitors or colleagues.",
+        title: 'Leave the World in a Better Place',
+        description: "Share what worked, what didn't, and what you learned. No negative vibes or thrash talking allowed.",
         icon: 'tabler:arrow-up-circle',
       },
       {
-        title: 'Be Technically Honest',
+        title: 'Be Honest',
         description: 'Share real metrics, real code, real problems. No inflated numbers or success theater.',
         icon: 'tabler:code',
       },
@@ -118,8 +118,8 @@ const metadata = {
       </h3>
       
       <p class="text-muted dark:text-gray-300 mb-4">
-        The best posts are specific, technical, and honest. They show the actual work—the debugging sessions, 
-        the architecture debates, the "oh shit" moments when you realize you've been doing it wrong.
+        The best posts are specific, raw, and honest. They show the actual work—the debugging sessions, 
+        the architecture debates, the "whoops!" moments when the penny drops that you've been doing it wrong.
       </p>
       
       <p class="text-muted dark:text-gray-300">
@@ -130,6 +130,99 @@ const metadata = {
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Sample Markdown -->
+  <Content
+    items={[
+      {
+        title: 'Frontmatter',
+        description: 'Add these required fields at the top of your .md file between triple dashes.',
+      },
+      {
+        title: 'Content Structure',
+        description: 'Use clear headings and include code snippets, metrics, or screenshots where relevant.',
+      },
+      {
+        title: 'Real Examples',
+        description: 'Show actual implementation details, not just high-level concepts.',
+      },
+    ]}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Sample Markdown Template
+      </h3>
+      
+      <p class="text-muted dark:text-gray-300 mb-4">
+        Here's a template to get you started. Copy this structure and fill in your own details:
+      </p>
+      
+      <div class="bg-slate-900 rounded-lg p-6 text-sm font-mono text-gray-300 mb-6 overflow-x-auto">
+        <pre><code>---
+publishDate: 2024-12-13T10:00:00Z
+title: How I Fixed Our Deployment Pipeline in One Coffee Break
+excerpt: Our CI/CD was broken for weeks. Here's the 3-line fix that saved us 2 hours per deploy.
+tags:
+  - devops
+  - deployment
+  - build-log
+  - debugging
+---
+
+## The Problem
+
+Our deployment pipeline started failing after we upgraded to Node 20. 
+Every deploy took 45 minutes and failed 60% of the time.
+
+```bash
+# This was failing silently
+npm run build --production
+```
+
+## The Investigation
+
+I spent Tuesday morning diving into the logs:
+
+1. **Build logs showed**: Memory usage spiking at 4.2GB
+2. **Docker container**: Only allocated 4GB RAM
+3. **The real culprit**: New TypeScript compiler using more memory
+
+## The Fix
+
+Three lines in our Dockerfile:
+
+```dockerfile
+# Before
+FROM node:20-alpine
+# After  
+FROM node:20-alpine
+ENV NODE_OPTIONS="--max-old-space-size=8192"
+```
+
+## Results
+
+- Deploy time: 45min → 8min
+- Success rate: 40% → 100%
+- Team happiness: 📈
+
+## Lessons Learned
+
+1. Always check resource limits first
+2. Node 20's memory usage patterns changed
+3. Docker defaults aren't always enough
+
+Next time I'll monitor resource usage during upgrades.
+
+---
+
+*The fix was simple. Finding it wasn't.*</code></pre>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-slate-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 

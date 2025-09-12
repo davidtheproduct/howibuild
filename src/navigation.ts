@@ -19,7 +19,16 @@ export const headerData = {
 };
 
 export const footerData = {
-  links: [],
+  links: [
+    {
+      title: 'Navigate',
+      links: [
+        { text: 'Build Log', href: getBlogPermalink() },
+        { text: 'About', href: getPermalink('/about') },
+        { text: 'Get Involved', href: getPermalink('/get-involved') },
+      ],
+    },
+  ],
   secondaryLinks: [
     { text: 'Contact', href: 'mailto:hello@davidtheproduct.com' },
   ],
