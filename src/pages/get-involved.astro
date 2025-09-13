@@ -4,6 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Content from '~/components/widgets/Content.astro';
+import buildersImage from '~/assets/images/builders-get-involved.png';
 
 const metadata = {
   title: 'Get Involved — howibuild.ai',
@@ -25,7 +26,7 @@ const metadata = {
 
     <Fragment slot="image">
       <img
-        src="/src/assets/images/builders-get-involved.png"
+        src={buildersImage.src}
         alt="Builders collaborating and sharing their stories"
         class="w-full h-auto rounded-lg shadow-lg"
       />
