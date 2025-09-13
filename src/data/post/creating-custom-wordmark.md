@@ -54,8 +54,9 @@ I downloaded [Inkscape](https://inkscape.org/) (free, open-source vector editor)
 3. **Color Management**: Used precise RGB values (34, 211, 238 for cyan accent) - Inkscape's color picker shows RGB and HSL, not hex
 4. **Typography**: Applied proper font weights and spacing
 5. **Export Options**: Learned to export as SVG with proper sizing
+6. **Text to Paths**: **Most importantly** - converted text to paths using "Path → Object to Path" to make fonts independent
 
-**Important**: The font only needed to be installed locally for Inkscape - we didn't need to load it on the website at all since we're using SVG assets.
+**Critical Step**: Converting text to paths removes the font dependency entirely. The SVG becomes a pure vector graphic that renders exactly as designed without needing any fonts loaded on the website.
 
 ### The Sizing Challenge
 
@@ -94,15 +95,20 @@ This tool creates optimized `.ico` files with multiple embedded sizes (16×16, 3
 ### Logo Component (Header)
 ```astro
 ---
-import logo from '~/assets/favicons/howibuild-logo.svg';
+import logoSvg from '~/assets/favicons/howibuild-logo.svg';
 ---
 
 <img 
-  src={logo.src} 
+  src={logoSvg.src} 
   alt="howibuild" 
-  class="h-8 md:h-6 w-auto"
+  class="h-12 md:h-10 w-auto"
 />
 ```
+
+**Key Points:**
+- Uses the SVG with text converted to paths (no font dependencies)
+- Larger size (`h-12 md:h-10`) for better visibility
+- Scales perfectly at any resolution
 
 ### Favicon Component
 ```astro
