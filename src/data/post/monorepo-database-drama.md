@@ -1,5 +1,5 @@
 ---
-publishDate: 2024-12-12T00:00:00Z
+publishDate: 2025-09-12T00:00:00Z
 title: Monorepo Mayhem & Database Drama
 excerpt: Midway through merging three repos into a monorepo, my build broke due to exposed security keys. Here's how I fixed my deployment and secured my database.
 tags:

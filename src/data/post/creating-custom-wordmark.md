@@ -1,9 +1,15 @@
 ---
-title: "Creating a Custom Wordmark for howibuild"
-description: "How I designed and implemented a custom 'howibuild' wordmark using Inkscape, then built a complete favicon system for different use cases."
-pubDate: 2024-12-19
-heroImage: "/src/assets/images/hero-image.png"
-tags: ["design", "svg", "favicon", "wordmark", "inkscape", "branding"]
+title: Creating a Custom Wordmark for howibuild
+excerpt: How I designed and implemented a custom 'howibuild' wordmark using Inkscape, then built a complete favicon system for different use cases.
+pubDate: 2025-09-13
+heroImage: /src/assets/favicons/howibuild-logo.svg
+tags:
+- design
+- svg
+- favicon
+- wordmark
+- inkscape
+- branding
 ---
 
 # Creating a Custom Wordmark for howibuild
