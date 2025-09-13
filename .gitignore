@@ -11,13 +11,39 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
 
 # macOS-specific files
 .DS_Store
+
+# AI assistant files
+.claude*
+.cursor*
+.github/copilot*
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker files (if not needed)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Personal/local machine paths
+**/Users/**
+**/home/**
 
 pnpm-lock.yaml
 
