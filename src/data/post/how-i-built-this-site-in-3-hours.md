@@ -2,6 +2,7 @@
 publishDate: 2025-09-12T18:00:00Z
 title: How I Built This Site in 3 Hours
 excerpt: From idea to live site in one afternoon. Here's the exact process, tools, and AI assistants I used to launch howibuild.ai.
+image: ~/assets/images/hero-image.png
 tags:
   - launch
   - build-log

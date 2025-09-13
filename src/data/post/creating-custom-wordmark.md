@@ -2,7 +2,7 @@
 title: Creating a Custom Wordmark for howibuild
 excerpt: How I designed and implemented a custom 'howibuild' wordmark using Inkscape, then built a complete favicon system for different use cases.
 pubDate: 2025-09-13
-heroImage: /src/assets/favicons/howibuild-logo.svg
+image: ~/assets/images/howibuild-final.png
 tags:
 - design
 - svg
