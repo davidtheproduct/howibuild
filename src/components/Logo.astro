@@ -1,9 +1,12 @@
 ---
 import { SITE } from 'astrowind:config';
+import logo from '~/assets/favicons/howibuild-logo.svg';
 ---
 
 <div class="self-center ml-2 rtl:ml-0 rtl:mr-2 flex items-center">
-  <div class="font-mono font-bold text-2xl md:text-xl tracking-tight text-gray-900 dark:text-white">
-    <span class="inline-block">how</span><span class="inline-block text-cyan-400">i</span><span class="inline-block">build</span><span class="inline-block text-cyan-400">.</span><span class="inline-block">ai</span>
-  </div>
+  <img 
+    src={logo.src} 
+    alt="howibuild" 
+    class="h-8 md:h-6 w-auto"
+  />
 </div>
