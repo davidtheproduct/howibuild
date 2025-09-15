@@ -1,11 +1,8 @@
-# 🚀 AstroWind
+# 🚀 howibuild.ai
 
-<img src="https://raw.githubusercontent.com/arthelokyo/.github/main/resources/astrowind/lighthouse-score.png" align="right"
-     alt="AstroWind Lighthouse Score" width="100" height="358">
+**howibuild.ai** is a build log blog for solo founders, product operators, and technically minded builders. Real-time insights from the trenches of product development.
 
-🌟 _Most *starred* & *forked* Astro theme in 2022, 2023 & 2024_. 🌟
-
-**AstroWind** is a free and open-source template to make your website using **[Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)**. Ready to start a new project and designed taking into account web best practices.
+Built with **[Astro 5.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/)** using the AstroWind template. Dark mode by default because that's how we actually work.
 
 - ✅ **Production-ready** scores in **PageSpeed Insights** reports.
 - ✅ Integration with **Tailwind CSS** supporting **Dark mode** and **_RTL_**.

@@ -1,7 +1,7 @@
 {
-  "name": "@onwidget/astrowind",
-  "version": "1.0.0-beta.52",
-  "description": "AstroWind: A free template using Astro 5.0 and Tailwind CSS. Astro starter theme.",
+  "name": "howibuild",
+  "version": "1.0.0",
+  "description": "howibuild.ai: Build logs and founder lessons from the trenches. Real-time insights for solo founders, product operators, and technically minded builders.",
   "type": "module",
   "private": true,
   "engines": {
