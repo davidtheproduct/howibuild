@@ -2,6 +2,7 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
+import NewsletterSignup from '~/components/widgets/NewsletterSignup.astro';
 import { headerData, footerData } from '~/navigation';
 import type { MetaData } from '~/types';
 
@@ -19,6 +20,7 @@ const { metadata } = Astro.props;
   <main>
     <slot />
   </main>
+  <NewsletterSignup />
   <slot name="footer">
     <Footer {...footerData} />
   </slot>

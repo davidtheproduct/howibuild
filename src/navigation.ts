@@ -31,6 +31,8 @@ export const footerData = {
   ],
   secondaryLinks: [
     { text: 'Contact', href: 'mailto:hello@davidtheproduct.com' },
+    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Terms of Service', href: getPermalink('/terms') },
   ],
   socialLinks: [
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
