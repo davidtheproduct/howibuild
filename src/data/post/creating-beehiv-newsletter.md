@@ -73,6 +73,8 @@ This creates a dedicated newsletter site at `newsletter.howibuild.ai` while keep
 
 **Why this matters**: Beehiv tries to add lots of default pages. For a simple newsletter, you only need the core functionality. You can always add more pages later when you have an audience.
 
+![Beehiv default pages that aren't needed for a simple newsletter](~/assets/images/additional-pages-not-required.png)
+
 ## Step 5: Subscriber Form Creation (30 mins)
 
 **Found the embed form:**
@@ -191,12 +193,12 @@ Note: subsequent newsletters will be much faster to create and send.
 
 ## The Result
 
-✅ **Professional newsletter site** at newsletter.howibuild.ai  
-✅ **Integrated signup forms** across main site
-✅ **Automated content generation** from blog posts
-✅ **Welcome email flow** for new subscribers
-✅ **Brand consistency** with main site
-✅ **Legal compliance** with updated privacy/terms
+- ✅ **Professional newsletter site** at newsletter.howibuild.ai
+- ✅ **Integrated signup forms** across main site
+- ✅ **Automated content generation** from blog posts
+- ✅ **Welcome email flow** for new subscribers
+- ✅ **Brand consistency** with main site
+- ✅ **Legal compliance** with updated privacy/terms
 
 ## Key Learnings
 
@@ -213,7 +215,7 @@ Matching fonts, colors, and tone between your main site and newsletter creates a
 Used Claude Desktop throughout the process for guidance, troubleshooting, and automation. Screenshots + questions = instant help.
 
 ### 5. Test Everything
-Subscribe with test emails, check automation flows, verify DNS propagation. Small details matter.
+Subscribe with test emails, check automation flows, verify DNS propagation.
 
 ## Your Turn
 
