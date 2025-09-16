@@ -2,7 +2,7 @@
 publishDate: 2025-09-16T12:00:00Z
 title: Monorepo Design System Chaos (Part 1)
 excerpt: Three apps, one design system, and a $20 AI expert consultation. Here's what happens when Astro, Vite, shadcn/ui, and Tailwind collide in a monorepo, and why it's still not resolved.
-image: ~/assets/images/monorepo-design-system.png
+image: ~/assets/images/founder-build-logs.png
 tags:
   - monorepo
   - design-system
@@ -129,10 +129,7 @@ When you're building a design system for multiple frameworks, choose solutions t
 
 ## What's Next?
 
-I'm contemplating two paths forward:
-
-1. **Claude Flow Hive Mind**: Try a different AI approach with multiple agents working in parallel
-2. **Call it good enough**: Pivot back to UX improvements and get the monorepo to match the old repo's core app user experience
+I considered trying a different approach with [Claude Flow](https://github.com/ruvnet/claude-flow) hive mind to have multiple AI agents attack the problem. But I think I'm going to call it **good enough** and pivot back to UX improvements and get the monorepo to match the old repo's core app user experience.
 
 I'll decide in the morning when I'm not so tired. Stay tuned for Part 2.
 
