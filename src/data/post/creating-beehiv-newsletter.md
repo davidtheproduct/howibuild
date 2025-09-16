@@ -1,7 +1,7 @@
 ---
 title: Creating a Beehiv Newsletter for howibuild
 excerpt: How I set up a complete newsletter system using Beehiv, from domain configuration to automated content generation. A step-by-step guide for founders who want to start building an audience.
-pubDate: 2025-09-15
+publishDate: 2025-09-15T00:00:00Z
 image: ~/assets/images/newsletter-creation.png
 tags:
 - newsletter
