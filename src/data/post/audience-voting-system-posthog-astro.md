@@ -1,6 +1,6 @@
 ---
-title: "Building a Content Backlog with Audience Voting: PostHog + Astro Implementation"
-excerpt: "How I built an audience-driven content backlog with real-time voting using PostHog events and Netlify functions. Includes troubleshooting tips and UX best practices for engagement elements."
+title: "Building Content Backlogs with PostHog + Astro Voting"
+excerpt: "Built audience‑driven content ranking with PostHog + Astro. Full implementation with troubleshooting, live vote counts, and UX best practices."
 category: { slug: "build-log", title: "Build Log" }
 tags:
   - { slug: "posthog", title: "PostHog" }
@@ -9,17 +9,16 @@ tags:
   - { slug: "audience-building", title: "Audience Building" }
   - { slug: "analytics", title: "Analytics" }
   - { slug: "ui", title: "UI" }
-publishDate: 2025-01-17T12:00:00.000Z
-draft: true
-author: David Michelle
-image: ~/assets/images/content-backlog-voting.png
+publishDate: 2025-09-17T12:00:00.000Z
+author: David Webb
+image: ~/assets/images/builder-thumbs-up.png
 ---
 
-I had a growing list of topics I wanted to write about, but limited time. Instead of guessing what my audience wanted, I decided to let them vote and prioritize the content backlog for me.
+I had dozens of blog topics but no signal on what my audience actually wanted. Instead of guessing, you can vote now and help rank my content backlog.
 
-Here's how I built an audience-driven content voting system using PostHog events, Astro components, and Netlify functions - plus all the gotchas I hit along the way.
+Here's how I built an audience-driven voting system using PostHog events, Astro components, and Netlify functions, plus every gotcha I hit along the way.
 
-## The Problem: Too Many Ideas, Not Enough Time
+## The Problem: No Signal on Audience Needs
 
 As a solo founder documenting my build journey, I accumulated dozens of potential blog topics:
 - "Custom Slash Commands in Claude Code"
@@ -27,7 +26,7 @@ As a solo founder documenting my build journey, I accumulated dozens of potentia
 - "Creating Sub-Agents for Complex Tasks"
 - "R2 Caching to Cut API Costs"
 
-But which ones would actually provide value to my audience? Rather than make assumptions, I wanted data-driven prioritization.
+But which ones would actually provide value? I'm time poor so need data-driven ranking, not assumptions.
 
 ## The Solution: Audience Voting System
 
@@ -48,7 +47,7 @@ But which ones would actually provide value to my audience? Rather than make ass
 
 ### 1. Data Structure for Topics
 
-First, I created a centralized data source for upcoming topics:
+First, I created a consolidated data source for upcoming topics:
 
 ```typescript
 // src/data/upcoming-topics.ts
@@ -66,11 +65,11 @@ export const upcomingTopics: UpcomingTopic[] = [
     summary: 'Build your own slash commands for faster AI-assisted development',
     category: 'ai-assistants'
   },
-  // ... more topics
+  // ... simply copy and paste to add more topics or edit the sort order
 ];
 ```
 
-**Key Decision:** The `id` field is immutable once voting starts. Changing it creates a new vote stream, so make it descriptive and stable.
+**Key Decision:** The `id` field is immutable once voting starts. Changing it creates a new vote stream, so I made it descriptive and stable.
 
 ### 2. PostHog Event Tracking
 
@@ -88,10 +87,15 @@ posthog.capture('topic_vote', {
 **Environment Variables:**
 ```bash
 # .env.local (local development)
-POSTHOG_PROJECT_ID=your_project_id
-POSTHOG_API_KEY=your_api_key
-POSTHOG_HOST=https://us.i.posthog.com
+POSTHOG_PROJECT_ID=your_project_id  # Public, safe to commit
+POSTHOG_API_KEY=your_api_key         # SECRET - add to .gitignore
+POSTHOG_HOST=https://us.i.posthog.com # Public, safe to commit
 ```
+
+**Security Notes:**
+- Add `.env.local` to `.gitignore` to prevent committing secrets
+- Set `POSTHOG_API_KEY` as an environment variable in Netlify dashboard, mark as a secret
+- `POSTHOG_PROJECT_ID` and `POSTHOG_HOST` are safe to commit
 
 ### 3. Reusable ThumbsUpButton Component
 
@@ -249,7 +253,7 @@ const voteCounts = await getPostHogVoteCounts(topicIds);
   <section class="px-6 py-12 mx-auto max-w-4xl">
     <h1 class="text-4xl font-bold mb-8">Coming Up</h1>
     <p class="text-xl text-gray-300 mb-12">
-      Help me prioritize what to build and write about next. Your votes directly influence my content roadmap.
+      Help me rank what to build and write about next. Your votes directly influence my content roadmap.
     </p>
     
     <div class="grid gap-6 md:grid-cols-2">
@@ -276,18 +280,18 @@ const voteCounts = await getPostHogVoteCounts(topicIds);
 </Layout>
 ```
 
-## Critical Issues I Hit (And How to Fix Them)
+## Issues I Hit (And How to Fix Them)
 
 ### 1. String Interpolation Bug
 
 **Problem:** PostHog events weren't being captured. Network showed "request missing data payload" errors.
 
-**Root Cause:** I tried to interpolate Astro props like this:
+**Root Cause:** I tried to use Astro props directly in JavaScript like this:
 ```javascript
 const topicIdValue = "{topicId}";  // ❌ This is literal string "{topicId}"
 ```
 
-**Solution:** Read values from data attributes in the click handler:
+**Fix:** Read values from data attributes in the click handler:
 ```javascript
 const button = e.target.closest('.thumbs-up-btn');
 const topicId = button.dataset.topicId;  // ✅ Gets real value
@@ -297,7 +301,7 @@ const topicId = button.dataset.topicId;  // ✅ Gets real value
 
 **Problem:** With multiple voting buttons on a page, `document.querySelector()` always targeted the first button.
 
-**Solution:** Use event delegation with `e.target.closest()`:
+**Fix:** Use event delegation with `e.target.closest()`:
 ```javascript
 document.addEventListener('click', (e) => {
   if (e.target.closest('.thumbs-up-btn')) {
@@ -313,7 +317,7 @@ document.addEventListener('click', (e) => {
 
 **Root Cause:** PostHog has ~2-5 second processing delay between event capture and API availability.
 
-**Solution:** 
+**Fix:** 
 - Increase delay to 5 seconds
 - Only update display if real count ≥ current display count
 - Prevents reverting optimistic updates
@@ -330,11 +334,19 @@ posthog.init('your-key', {
 });
 ```
 
+**Testing Approach:**
+- **CLI test**: Use PostHog CLI to verify events are captured
+- **Browser console**: Check `window.posthog` object and debug output
+- **Network tab**: Verify API calls are being made correctly
+- **PostHog event definitions**: Go to Data Management → Event Definitions → search for 'topic_vote' to validate events are recorded
+
+![Voting Test Results](~/assets/images/posthog-topic-votes.png)
+
 ## UX Best Practices for Engagement Elements
 
 ### Blog Post Layout Pattern
 
-**Research Finding:** Following Medium/GitHub patterns, all engagement actions should be on the same horizontal line.
+**Research Finding:** Following Medium/GitHub patterns, I put all engagement actions on the same horizontal line.
 
 **Implementation:**
 ```astro
@@ -352,7 +364,7 @@ posthog.init('your-key', {
 ```
 
 **Benefits:**
-- ✅ Single scan line for all engagement actions
+- ✅ Single UX scan line for all engagement actions
 - ✅ Reduced cognitive load
 - ✅ Mobile-friendly grouped targets
 - ✅ Industry-standard pattern users expect
@@ -367,7 +379,7 @@ posthog.init('your-key', {
 .justify-between items-start
 ```
 
-## Performance Optimizations
+## Performance Considerations
 
 ### 1. SSR for Initial Counts
 Fetch vote counts server-side to avoid loading states:
@@ -391,45 +403,65 @@ The Netlify function accepts multiple topic IDs:
 /.netlify/functions/get-vote-counts?topicIds=topic1,topic2,topic3
 ```
 
+## Accessibility Implementation
+
+I added proper accessibility features to the voting button:
+- `aria-label` with topic title and current vote count
+- `aria-describedby` linking to the vote count element
+- `aria-live="polite"` on vote count for screen reader updates
+- `role="button"` for explicit button semantics
+- Dynamic `aria-label` updates when vote count changes
+- Uses `polite` instead of `assertive` to avoid interrupting user workflow
+
+## UX Design Choices
+
+I focused on making voting frictionless and rewarding:
+
+- **Clear triggers**: Inline engagement bar makes voting obvious
+- **One-tap action**: Optimistic +1 feedback with real count sync
+- **Visible progress**: Live vote counts via Netlify function
+- **Closed loop**: Posts reference voter impact to show results
+
+**Current Implementation:**
+- Simple 👍 button with vote count
+- ARIA labels for screen reader accessibility
+- Optimistic +1 update with real count sync
+
 ## Measuring Success
 
-**Analytics to Track:**
+**Analytics I Track:**
 - Vote engagement rate per topic
 - Vote patterns by user session
 - Content completion rate for high-voted topics
 - Time from vote to published content
 
-**PostHog Insights:**
+**PostHog Insights I Use:**
 - Create funnel: Page view → Vote click → Content engagement
 - Segment by topic category performance
 - A/B test different voting UX patterns
 
 ## Next Steps
 
-**Immediate Enhancements:**
+**Future Enhancements I'll Consider:**
 - Prevent duplicate votes per session/device
 - Add vote animations and micro-interactions
 - Email notifications when high-voted content is published
-
-**Future Considerations:**
 - Move topics into CMS for non-technical team members
 - Add comment/suggestion functionality
-- Implement voting decay over time
 - Content request form for audience-submitted topics
 
 ## Key Takeaways
 
 1. **Start simple** - Basic voting provides 80% of the value
-2. **Debug mode is essential** - PostHog issues are hard to diagnose without it
+2. **Reusable components** - Build once, use everywhere (Coming Up page, blog posts)
 3. **Event delegation** - Critical for multiple component instances
 4. **Optimistic UI** - Handle API latency gracefully
 5. **Follow UX patterns** - Users expect familiar engagement layouts
 6. **Real-time data** - Static counts feel broken in 2025
 
-The voting system has already influenced my content roadmap. AI assistant topics are getting the most votes, so that's where I'm focusing next.
+**Your vote shapes what I ship next.**
+Want to see this in action? Check out the [Coming Up page](/coming-up) and vote on what you'd like me to build next!
 
-**Want to see this in action?** Check out the [Coming Up page](/coming-up) and vote on what you'd like me to build next!
+**Ready to build your own voting system?** Start with the [PostHog docs](https://posthog.com/docs) and [Astro components guide](https://docs.astro.build/en/core-concepts/astro-components/).
 
 ---
-
-*This post was written based on audience votes. Meta? Maybe. Effective? Definitely.*

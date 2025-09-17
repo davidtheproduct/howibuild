@@ -20,8 +20,11 @@ const buttonStyles = compact
   data-topic-id={topicId}
   data-topic-title={topicTitle}
   data-initial-count={initialVoteCount}
+  aria-label={`Vote for ${topicTitle}. Current votes: ${initialVoteCount}`}
+  aria-describedby={`votes-${topicId}`}
+  role="button"
 >
-  👍 <span class="vote-count font-bold" id={`votes-${topicId}`}>
+  👍 <span class="vote-count font-bold" id={`votes-${topicId}`} aria-live="polite" aria-label={`${initialVoteCount} votes`}>
     {initialVoteCount}
   </span>
 </button>
@@ -46,8 +49,10 @@ const buttonStyles = compact
     const countElement = document.getElementById(`votes-${topicId}`);
     if (countElement) {
       const currentCount = parseInt(countElement.textContent) || 0;
-      countElement.textContent = currentCount + 1;
-      console.log('Updated vote count for', topicId, 'to', currentCount + 1); // Debug log
+      const newCount = currentCount + 1;
+      countElement.textContent = newCount;
+      countElement.setAttribute('aria-label', `${newCount} votes`);
+      console.log('Updated vote count for', topicId, 'to', newCount); // Debug log
     }
 
     // Fetch real count after delay to allow PostHog to process
@@ -64,6 +69,7 @@ const buttonStyles = compact
             // Only update if real count is higher (or significantly different) to avoid reverting optimistic updates
             if (realCount >= currentDisplayCount || Math.abs(realCount - currentDisplayCount) > 1) {
               countElement.textContent = realCount;
+              countElement.setAttribute('aria-label', `${realCount} votes`);
               console.log('Updated with real count for', topicId, ':', realCount, '(was displaying:', currentDisplayCount, ')');
             } else {
               console.log('Keeping optimistic count for', topicId, '- real:', realCount, 'displaying:', currentDisplayCount);
