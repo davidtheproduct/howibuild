@@ -21,7 +21,7 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
 </button>
 
 <script>
-  function trackVote(topicId, topicTitle) {
+  async function trackVote(topicId, topicTitle) {
     console.log('TrackVote called with:', { topicId, topicTitle }); // Debug log
     
     // Track the vote in PostHog
@@ -43,6 +43,24 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
       countElement.textContent = currentCount + 1;
       console.log('Updated vote count for', topicId, 'to', currentCount + 1); // Debug log
     }
+
+    // Fetch real count after a short delay to allow PostHog to process
+    setTimeout(async () => {
+      try {
+        const response = await fetch(`/.netlify/functions/get-vote-counts?topicIds=${encodeURIComponent(topicId)}`);
+        if (response.ok) {
+          const data = await response.json();
+          const realCount = data.voteCounts[topicId] || 0;
+          
+          if (countElement) {
+            countElement.textContent = realCount;
+            console.log('Updated with real count for', topicId, ':', realCount); // Debug log
+          }
+        }
+      } catch (error) {
+        console.warn('Failed to fetch real vote count:', error);
+      }
+    }, 2000); // 2 second delay
   }
 
   // Use event delegation to handle clicks on any thumbs-up button

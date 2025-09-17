@@ -77,6 +77,44 @@ Added inside `src/components/blog/SinglePost.astro` below social sharing:
 3. Visit `/coming-up` and any blog post
 4. Click 👍; verify `topic_vote` events in PostHog
 
+## Troubleshooting
+
+### PostHog Events Not Capturing
+**Symptoms:** "request missing data payload" errors, events don't appear in PostHog Live Events
+
+**Root Causes & Solutions:**
+1. **String Interpolation Bug** (Primary Issue)
+   - **Problem:** Using `"{topicId}"` literal strings instead of actual prop values
+   - **Fix:** Read from `button.dataset.topicId` in click handler
+   - **Debug:** Enable `debug: true` in PostHog init to see what's being sent
+
+2. **Multiple Component Conflicts**
+   - **Problem:** `document.querySelector()` targets wrong button when multiple instances exist
+   - **Fix:** Use event delegation with `e.target.closest('.thumbs-up-btn')`
+
+3. **Astro Script Scope Issues** 
+   - **Problem:** Scripts run globally, causing variable collisions between components
+   - **Fix:** Use event delegation instead of per-component selectors
+
+**Debugging Steps:**
+1. Enable PostHog debug mode (`debug: true`)
+2. Check browser console for click event logs
+3. Verify PostHog receives correct `topic_id` and `topic_title` (not literal strings)
+4. Test CLI: `curl -X POST https://us.i.posthog.com/capture/ -H 'Content-Type: application/json' -d '{"api_key":"your_key","event":"topic_vote","properties":{"distinct_id":"test","topic_id":"test"}}'`
+
+## Real-time Vote Display
+
+**Current State:** Vote counts only update on site redeploy (SSR-fetched on build)
+
+**Need:** Netlify function to fetch live counts from PostHog API for better UX
+
+**Implementation:** ✅ **DONE**
+- `/.netlify/functions/get-vote-counts.js` - Netlify function
+- Accepts `?topicIds=topic1,topic2` parameter
+- Queries PostHog API for event counts per topic
+- `ThumbsUpButton` calls function 2s after vote for real count
+- **UX Flow:** Click → optimistic +1 → PostHog capture → fetch real count → update display
+
 ## Notes & Future Enhancements
 - Optional: prevent duplicate votes per session/device
 - Optional: thumbs down; animations; rate limiting
