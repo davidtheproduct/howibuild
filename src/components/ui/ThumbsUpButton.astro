@@ -21,11 +21,9 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
 </button>
 
 <script>
-  // Inline server values so the client script can target the correct element
-  const topicIdValue = "{topicId}";
-  const topicTitleValue = "{topicTitle}";
-
   function trackVote(topicId, topicTitle) {
+    console.log('TrackVote called with:', { topicId, topicTitle }); // Debug log
+    
     // Track the vote in PostHog
     if (window.posthog) {
       window.posthog.capture('topic_vote', { 
@@ -33,6 +31,9 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
         topic_title: topicTitle,
         timestamp: new Date().toISOString()
       });
+      console.log('PostHog capture called for topic_vote'); // Debug log
+    } else {
+      console.warn('PostHog not available');
     }
     
     // Optimistic update (immediate UI feedback)
@@ -40,17 +41,28 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
     if (countElement) {
       const currentCount = parseInt(countElement.textContent) || 0;
       countElement.textContent = currentCount + 1;
+      console.log('Updated vote count for', topicId, 'to', currentCount + 1); // Debug log
     }
   }
 
-  // Bind click handler immediately; the button exists before this script runs
-  const button = document.querySelector(`[data-topic-id="${topicIdValue}"]`);
-  if (button) {
-    button.addEventListener('click', (e) => {
+  // Use event delegation to handle clicks on any thumbs-up button
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.thumbs-up-btn')) {
       e.preventDefault();
-      trackVote(topicIdValue, topicTitleValue);
-    });
-  }
+      
+      const button = e.target.closest('.thumbs-up-btn');
+      const topicId = button.dataset.topicId;
+      const topicTitle = button.dataset.topicTitle;
+      
+      console.log('Button clicked:', { topicId, topicTitle }); // Debug log
+      
+      if (topicId && topicTitle) {
+        trackVote(topicId, topicTitle);
+      } else {
+        console.error('Missing topic data on button:', button);
+      }
+    }
+  });
 </script>
 
 <style>
