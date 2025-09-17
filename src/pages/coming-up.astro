@@ -1,0 +1,77 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { upcomingTopics } from '~/data/upcoming-topics';
+import { getPostHogVoteCounts } from '~/utils/posthog';
+import ThumbsUpButton from '~/components/ui/ThumbsUpButton.astro';
+
+// Fetch vote counts for all topics
+const topicIds = upcomingTopics.map(topic => topic.id);
+const voteCounts = await getPostHogVoteCounts(topicIds);
+
+const metadata = {
+  title: 'Coming Up',
+  description: 'Vote on upcoming blog topics you\'d like to see covered next. Help shape the content roadmap.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: 'website',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-white mb-4">Coming Up</h1>
+      <p class="text-xl text-gray-300 mb-6">
+        Vote on topics you'd like to see covered next. Help shape the content roadmap.
+      </p>
+      <p class="text-gray-400">
+        Topics with the most votes get prioritized for upcoming posts.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {upcomingTopics.map((topic) => (
+        <div class="topic-card bg-gray-900 border border-gray-700 rounded-lg p-6 hover:border-cyan-400 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-xl font-semibold text-white pr-4">{topic.title}</h3>
+            <ThumbsUpButton 
+              topicId={topic.id}
+              topicTitle={topic.title}
+              initialVoteCount={voteCounts[topic.id] || 0}
+            />
+          </div>
+          <p class="text-gray-300 mb-4">{topic.summary}</p>
+          {topic.category && (
+            <span class="inline-block px-2 py-1 bg-gray-800 text-cyan-400 text-sm rounded">
+              {topic.category}
+            </span>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-gray-400 text-sm">
+        Have a topic suggestion? 
+        <a href="mailto:hello@davidtheproduct.com" class="text-cyan-400 hover:underline ml-1">
+          Get in touch
+        </a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .topic-card {
+    transition: all 0.2s ease;
+  }
+  
+  .topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1);
+  }
+</style>

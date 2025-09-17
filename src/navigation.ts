@@ -7,6 +7,10 @@ export const headerData = {
       href: getBlogPermalink(),
     },
     {
+      text: 'Coming Up',
+      href: getPermalink('/coming-up'),
+    },
+    {
       text: 'About',
       href: getPermalink('/about'),
     },
@@ -24,6 +28,7 @@ export const footerData = {
       title: 'Navigate',
       links: [
         { text: 'Build Log', href: getBlogPermalink() },
+        { text: 'Coming Up', href: getPermalink('/coming-up') },
         { text: 'About', href: getPermalink('/about') },
         { text: 'Get Involved', href: getPermalink('/get-involved') },
       ],

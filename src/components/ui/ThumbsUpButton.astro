@@ -1,0 +1,71 @@
+---
+export interface Props {
+  topicId: string;
+  topicTitle: string;
+  initialVoteCount?: number;
+  className?: string;
+}
+
+const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.props;
+---
+
+<button 
+  class={`thumbs-up-btn flex items-center gap-2 px-3 py-2 bg-transparent border border-cyan-400 text-cyan-400 rounded-md hover:bg-cyan-400 hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap ${className}`}
+  data-topic-id={topicId}
+  data-topic-title={topicTitle}
+  data-initial-count={initialVoteCount}
+>
+  👍 <span class="vote-count font-bold" id={`votes-${topicId}`}>
+    {initialVoteCount}
+  </span>
+</button>
+
+<script>
+  function trackVote(topicId: string, topicTitle: string) {
+    // Track the vote in PostHog
+    if (window.posthog) {
+      window.posthog.capture('topic_vote', { 
+        topic_id: topicId,
+        topic_title: topicTitle,
+        timestamp: new Date().toISOString()
+      });
+    }
+    
+    // Optimistic update (immediate UI feedback)
+    const countElement = document.getElementById(`votes-${topicId}`);
+    if (countElement) {
+      const currentCount = parseInt(countElement.textContent) || 0;
+      countElement.textContent = currentCount + 1;
+    }
+  }
+
+  // Add click handler when component loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector(`[data-topic-id="${topicId}"]`);
+    if (button) {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const topicId = button.getAttribute('data-topic-id');
+        const topicTitle = button.getAttribute('data-topic-title');
+        
+        if (topicId && topicTitle) {
+          trackVote(topicId, topicTitle);
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .thumbs-up-btn {
+    transition: all 0.2s ease;
+  }
+  
+  .thumbs-up-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .thumbs-up-btn:active {
+    transform: scale(0.95);
+  }
+</style>
