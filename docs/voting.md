@@ -113,7 +113,8 @@ Added inside `src/components/blog/SinglePost.astro` below social sharing:
 - Accepts `?topicIds=topic1,topic2` parameter
 - Queries PostHog API for event counts per topic
 - `ThumbsUpButton` calls function 2s after vote for real count
-- **UX Flow:** Click → optimistic +1 → PostHog capture → fetch real count → update display
+- **UX Flow:** Click → optimistic +1 → PostHog capture → 5s delay → fetch real count → update display (only if higher)
+- **Optimistic Protection:** Real count only overwrites display if higher than current, preventing reversion due to PostHog ingestion latency
 
 ## Notes & Future Enhancements
 - Optional: prevent duplicate votes per session/device

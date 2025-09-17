@@ -44,6 +44,24 @@ export const upcomingTopics: UpcomingTopic[] = [
     category: 'architecture'
   },
   {
+    id: 'working-concurrently',
+    title: 'Working Concurrently',
+    summary: 'Moving from working sequentially to working concurrently, safely without breaking things',
+    category: 'process'
+  },
+  {
+    id: 'tools-tools-tools',
+    title: 'Tools, Tools, Tools',
+    summary: 'My daily tech stack and how I use them to build my products',
+    category: 'tools'
+  },
+  {
+    id: 'llm-battles',
+    title: 'LLM Battles',
+    summary: 'How I use multiple LLMs concurrently to get the best results',
+    category: 'ai-assistants'
+  },
+  {
     id: 'community-inspo',
     title: 'The Communities I Learn From',
     summary: 'Backstage preview of the communities I learn from and how they have helped me',

@@ -44,7 +44,7 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
       console.log('Updated vote count for', topicId, 'to', currentCount + 1); // Debug log
     }
 
-    // Fetch real count after a short delay to allow PostHog to process
+    // Fetch real count after delay to allow PostHog to process
     setTimeout(async () => {
       try {
         const response = await fetch(`/.netlify/functions/get-vote-counts?topicIds=${encodeURIComponent(topicId)}`);
@@ -53,14 +53,21 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
           const realCount = data.voteCounts[topicId] || 0;
           
           if (countElement) {
-            countElement.textContent = realCount;
-            console.log('Updated with real count for', topicId, ':', realCount); // Debug log
+            const currentDisplayCount = parseInt(countElement.textContent) || 0;
+            
+            // Only update if real count is higher (or significantly different) to avoid reverting optimistic updates
+            if (realCount >= currentDisplayCount || Math.abs(realCount - currentDisplayCount) > 1) {
+              countElement.textContent = realCount;
+              console.log('Updated with real count for', topicId, ':', realCount, '(was displaying:', currentDisplayCount, ')');
+            } else {
+              console.log('Keeping optimistic count for', topicId, '- real:', realCount, 'displaying:', currentDisplayCount);
+            }
           }
         }
       } catch (error) {
         console.warn('Failed to fetch real vote count:', error);
       }
-    }, 2000); // 2 second delay
+    }, 5000); // 5 second delay to allow PostHog processing
   }
 
   // Use event delegation to handle clicks on any thumbs-up button
