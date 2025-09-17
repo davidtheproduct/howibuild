@@ -39,21 +39,14 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
     }
   }
 
-  // Add click handler when component loads
-  document.addEventListener('DOMContentLoaded', () => {
-    const button = document.querySelector(`[data-topic-id="${topicId}"]`);
-    if (button) {
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const topicId = button.getAttribute('data-topic-id');
-        const topicTitle = button.getAttribute('data-topic-title');
-        
-        if (topicId && topicTitle) {
-          trackVote(topicId, topicTitle);
-        }
-      });
-    }
-  });
+  // Bind click handler immediately; the button exists before this script runs
+  const button = document.querySelector(`[data-topic-id="${topicId}"]`);
+  if (button) {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      trackVote(topicId, topicTitle);
+    });
+  }
 </script>
 
 <style>
