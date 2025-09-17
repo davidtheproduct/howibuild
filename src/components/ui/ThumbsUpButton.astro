@@ -21,7 +21,11 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
 </button>
 
 <script>
-  function trackVote(topicId: string, topicTitle: string) {
+  // Inline server values so the client script can target the correct element
+  const topicIdValue = "{topicId}";
+  const topicTitleValue = "{topicTitle}";
+
+  function trackVote(topicId, topicTitle) {
     // Track the vote in PostHog
     if (window.posthog) {
       window.posthog.capture('topic_vote', { 
@@ -40,11 +44,11 @@ const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.prop
   }
 
   // Bind click handler immediately; the button exists before this script runs
-  const button = document.querySelector(`[data-topic-id="${topicId}"]`);
+  const button = document.querySelector(`[data-topic-id="${topicIdValue}"]`);
   if (button) {
     button.addEventListener('click', (e) => {
       e.preventDefault();
-      trackVote(topicId, topicTitle);
+      trackVote(topicIdValue, topicTitleValue);
     });
   }
 </script>
