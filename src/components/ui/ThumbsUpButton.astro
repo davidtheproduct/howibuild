@@ -4,13 +4,19 @@ export interface Props {
   topicTitle: string;
   initialVoteCount?: number;
   className?: string;
+  compact?: boolean;
 }
 
-const { topicId, topicTitle, initialVoteCount = 0, className = "" } = Astro.props;
+const { topicId, topicTitle, initialVoteCount = 0, className = "", compact = false } = Astro.props;
+
+// Different styles for compact (inline) vs full (standalone) mode
+const buttonStyles = compact 
+  ? `thumbs-up-btn flex items-center gap-1 px-2 py-1 bg-transparent border border-cyan-400 text-cyan-400 rounded hover:bg-cyan-400 hover:text-black transition-all duration-200 cursor-pointer text-sm ${className}`
+  : `thumbs-up-btn flex items-center gap-2 px-3 py-2 bg-transparent border border-cyan-400 text-cyan-400 rounded-md hover:bg-cyan-400 hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap ${className}`;
 ---
 
 <button 
-  class={`thumbs-up-btn flex items-center gap-2 px-3 py-2 bg-transparent border border-cyan-400 text-cyan-400 rounded-md hover:bg-cyan-400 hover:text-black transition-all duration-200 cursor-pointer whitespace-nowrap ${className}`}
+  class={buttonStyles}
   data-topic-id={topicId}
   data-topic-title={topicTitle}
   data-initial-count={initialVoteCount}

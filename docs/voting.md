@@ -45,6 +45,7 @@ import ThumbsUpButton from '~/components/ui/ThumbsUpButton.astro';
   topicId="my-topic"
   topicTitle="My Topic"
   initialVoteCount={0}
+  compact={true}
 />
 ```
 Props:
@@ -52,16 +53,24 @@ Props:
 - `topicTitle` (string, required)
 - `initialVoteCount` (number, optional)
 - `className` (string, optional)
+- `compact` (boolean, optional) - smaller styling for inline use
 
 ## Blog Integration (Automatic)
-Added inside `src/components/blog/SinglePost.astro` below social sharing:
+**Layout:** Inline engagement bar with tags on left, voting + sharing on right:
 ```astro
+<!-- Tags on left -->
+<PostTags tags={post.tags} />
+
+<!-- Voting + Sharing on right -->
 <ThumbsUpButton 
   topicId={`blog-post-${post.slug}`}
   topicTitle={post.title}
   initialVoteCount={initialVoteCount}
+  compact={true}
 />
+<SocialShare url={url} text={post.title} />
 ```
+- **UX Pattern:** Follows Medium/GitHub - all engagement actions on same line
 - Initial count is fetched server-side via `getPostHogVoteCounts([voteKey])`
 - Privacy/Terms pages are unaffected (different layout)
 
