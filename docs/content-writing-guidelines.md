@@ -14,11 +14,15 @@ Central guidelines for howibuild.ai content creation. This is a living document;
   - Code, APIs, and product behavior: “posthog.capture('event')”, “The button triggers a vote”.
   - Current state truths: “PostHog has ingestion latency”, “Counts update after 5s”.
 - **Use future sparingly** for immediate roadmap: “Next I’ll add duplicate-vote protection.”
+- **Avoid locale specific language**
+  - To appeal to a larger audience avoid words that are spelled differently between en-US and en-AU eg color/colour, prioritize/prioritise, behavior/behaviour, mom/mum etc.
+- **Avoid dashes in sentences**
+  - Use periods instead of dashes for better readability: "This worked. Meta? Maybe." not "This worked—meta? Maybe."
 
 ### DO / DO NOT (voice)
 - DO: “I had dozens of ideas and no signal. I let readers vote.”
 - DO: “Here’s the exact code and the error that blew up.”
-- DO NOT: “One should consider letting users vote to prioritize content.”
+- DO NOT: "One should consider letting users vote to rank content."
 - DO NOT: “It is advisable to leverage audience-centric methodologies.”
 
 ## Structure for build-log posts
@@ -41,16 +45,71 @@ Central guidelines for howibuild.ai content creation. This is a living document;
 - **Deep dives**: 1,500–2,000 words
 - **Quick wins**: 800–1,200 words
 
+## Frontmatter Standards
+- **publishDate**: Use `new Date().toISOString()` or current date (NOT training data dates)
+- **author**: "David Webb" (unless specified otherwise)
+- **category**: Object format `{ slug: "build-log", title: "Build Log" }` (backend-only, not displayed on frontend)
+- **tags**: Object format `{ slug: "posthog", title: "PostHog" }` (preferred over simple strings)
+- **image**: `~/assets/images/[descriptive-name].png` (descriptive, hyphenated)
+
+**Date Warning**: Always use current date, never dates from training data (e.g., 2025-01-17)
+
+**Category Strategy**: Categories are captured in backend for future use but not displayed on frontend to avoid confusion with primary "Build Logs" navigation.
+
+## Updating Existing Posts
+
+For posts published before these guidelines were established:
+
+### **Scope**: Update all existing posts for consistency
+- **Rationale**: Only 6 posts, less than a week old, minimal SEO impact
+- **Benefits**: Consistent data structure, future-proofing, better site organization
+
+### **Updates Required**:
+1. **Convert tags to object format**:
+   ```yaml
+   # From:
+   tags:
+     - posthog
+     - astro
+   
+   # To:
+   tags:
+     - { slug: "posthog", title: "PostHog" }
+     - { slug: "astro", title: "Astro" }
+   ```
+
+2. **Add category field**:
+   ```yaml
+   category: { slug: "build-log", title: "Build Log" }
+   ```
+
+3. **Set author field**:
+   ```yaml
+   author: David Webb
+   ```
+
+4. **Verify publishDate** (ensure current date, not training data)
+
+### **Category Mapping**:
+- **Implementation posts**: `{ slug: "build-log", title: "Build Log" }`
+- **Founder content**: `{ slug: "founding", title: "Founding" }`
+- **Design posts**: `{ slug: "design", title: "Design" }`
+
+### **Execution**:
+- **Timing**: Execute in new session to manage context
+- **Approach**: Update all 6 posts systematically
+- **Testing**: Verify frontend displays correctly after updates
+
 ## SEO checklist
 - **Title (50–60 chars)**: Primary keyword near the start; brand optional at end.
-  - DO: “Building Content Backlogs with PostHog + Astro Voting”
-  - DO NOT: “The Complete Ultimate Definitive Guide to Content Management and Voting Systems”
+  - DO: "Building Content Backlogs with PostHog + Astro Voting"
+  - DO NOT: "The Complete Ultimate Definitive Guide to Content Management and Voting Systems"
 - **URL slug**: short, hyphenated, descriptive. Avoid stop words.
   - DO: `/content-backlog-posthog-voting`
   - DO NOT: `/how-to-build-a-content-management-system-for-your-blog`
 - **Meta description (150–155 chars)**: Clear benefit + detail + subtle CTA.
-  - DO: “Built audience‑driven prioritization with PostHog + Astro. Full implementation with troubleshooting.”
-  - DO NOT: “Learn how to build voting systems using modern technologies.”
+  - DO: "Built audience‑driven content ranking with PostHog + Astro. Full implementation with troubleshooting."
+  - DO NOT: "Learn how to build voting systems using modern technologies."
 - **Keywords**: Integrate naturally; no stuffing. Use synonyms.
 - **Internal links**: Link relevant posts (e.g., Coming Up, related builds).
 - **Images**: Descriptive `alt` text with purpose/context.
