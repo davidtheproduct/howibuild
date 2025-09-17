@@ -91,6 +91,34 @@ window.posthog.capture('topic_vote', { topic_id: topicId });
 - Alt text explains purpose/function, not just appearance.
 - Avoid images of text for critical information.
 
+## Behavioral design (Hooked model)
+
+Use Nir Eyal’s Hooked framework to shape repeatable reader habits.
+
+1) **Trigger**
+- External: social posts, newsletter links, internal links, CTAs (“Vote on what I should build next”).
+- Internal: curiosity about the build, need for practical fixes.
+
+2) **Action** (make it easy)
+- Clear, singular CTAs per section: “Vote”, “Try the snippet”, “View Coming Up”.
+- Inline engagement bar (Vote + Share) on the same line for minimal friction.
+
+3) **Variable reward**
+- Show real outcomes: shipped fixes, metrics, gotchas, lessons learned.
+- Surface votes and visible progress (“+1 recorded”, live counts via Netlify function).
+- Mix wins and failures—unpredictability increases attention.
+
+4) **Investment**
+- Ask for light contributions: votes, comments, quick polls.
+- Encourage deeper investment: starring the repo, subscribing, suggesting topics.
+- Close the loop: reference prior voter influence in later posts.
+
+### DO / DO NOT (behavioral)
+- DO: “Your vote moved this topic up—here’s what I shipped.”
+- DO: “I used your feedback to fix X; here’s the diff.”
+- DO NOT: “Subscribe for updates” without a specific reason or payoff.
+- DO NOT: Hide counts or progress—make progress visible.
+
 ## Publishing checklist
 - [ ] First‑person past tense where narrative applies
 - [ ] Clear hook and problem framing
