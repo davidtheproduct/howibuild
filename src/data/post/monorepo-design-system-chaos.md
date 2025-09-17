@@ -3,6 +3,8 @@ publishDate: 2025-09-16T12:00:00Z
 title: Monorepo Design System Chaos (Part 1)
 excerpt: Three apps, one design system, and a $20 AI expert consultation. Here's what happens when Astro, Vite, shadcn/ui, and Tailwind collide in a monorepo, and why it's still not resolved.
 image: ~/assets/images/monorepo-design-chaos.png
+author: David Webb
+category: build-log
 tags:
   - monorepo
   - design-system

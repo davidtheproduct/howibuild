@@ -4,14 +4,14 @@ excerpt: Complete guide to setting up a professional newsletter system using Bee
 publishDate: 2025-09-15T00:00:00Z
 image: ~/assets/images/newsletter-creation.png
 author: David Webb
-category: { slug: "build-log", title: "Build Log" }
+category: build-log
 tags:
-  - { slug: "newsletter", title: "Newsletter" }
-  - { slug: "beehiv", title: "Beehiv" }
-  - { slug: "email-marketing", title: "Email Marketing" }
-  - { slug: "automation", title: "Automation" }
-  - { slug: "audience-building", title: "Audience Building" }
-  - { slug: "astro", title: "Astro" }
+  - newsletter
+  - beehiv
+  - email-marketing
+  - automation
+  - audience-building
+  - astro
 ---
 
 # Building Newsletter System with Beehiv + Astro Integration

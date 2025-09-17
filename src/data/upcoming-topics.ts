@@ -52,13 +52,13 @@ export const upcomingTopics: UpcomingTopic[] = [
   {
     id: 'tools-tools-tools',
     title: 'Tools, Tools, Tools',
-    summary: 'My daily tech stack and how I use them to build my products',
+    summary: 'My daily tech stack, what tools I use and how I employ them to build my products',
     category: 'tools'
   },
   {
     id: 'llm-battles',
     title: 'LLM Battles',
-    summary: 'How I use multiple LLMs concurrently to get the best results',
+    summary: 'How I use multiple LLMs concurrently and pitch them against each other to get the best results',
     category: 'ai-assistants'
   },
   {

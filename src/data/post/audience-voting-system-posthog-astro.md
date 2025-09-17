@@ -1,14 +1,14 @@
 ---
 title: "Building Content Backlogs with PostHog + Astro Voting"
 excerpt: "Built audience‑driven content ranking with PostHog + Astro. Full implementation with troubleshooting, live vote counts, and UX best practices."
-category: { slug: "build-log", title: "Build Log" }
+category: build-log
 tags:
-  - { slug: "posthog", title: "PostHog" }
-  - { slug: "astro", title: "Astro" }
-  - { slug: "netlify", title: "Netlify" }
-  - { slug: "audience-building", title: "Audience Building" }
-  - { slug: "analytics", title: "Analytics" }
-  - { slug: "ui", title: "UI" }
+  - posthog
+  - astro
+  - netlify
+  - audience-building
+  - analytics
+  - ui
 publishDate: 2025-09-17T12:00:00.000Z
 author: David Webb
 image: ~/assets/images/builder-thumbs-up.png

@@ -3,6 +3,8 @@ publishDate: 2025-09-12T05:00:00Z
 title: Why howibuild.ai Exists
 excerpt: Build logs and founder lessons from the trenches. Real-time insights for solo founders, product operators, and technically minded builders.
 image: ~/assets/images/founder-build-logs.png
+author: David Webb
+category: founding
 tags:
   - founding
   - build-log
