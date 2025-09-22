@@ -1,7 +1,7 @@
 ---
-publishDate: 2025-01-17T10:00:00.000Z
+publishDate: 2025-09-22T10:00:00.000Z
 title: First Impressions: ChatGPT Codex Opens New Possibilities
-excerpt: I tested ChatGPT's Codex AI coding agent for the first time. It found a typo I missed, added 1,500 lines of test code, and opened my mind to what's possible with AI-assisted development. Here's what happened and why it matters for solo developers.
+excerpt: I tested ChatGPT's Codex AI coding agent for the first time. It found a typo I missed, added 1,300 lines of test code, and opened my mind to what's possible with AI-assisted development. Here's what happened and why it matters for solo developers.
 image: ~/assets/images/ai-assistant-for-typos.png
 author: David Webb
 category: build-log
@@ -11,14 +11,13 @@ tags:
   - deployment
   - productivity
   - tools
-canonical: https://howibuild.ai/first-impressions-chatgpt-codex
 ---
 
 # First Impressions: ChatGPT Codex Opens New Possibilities
 
 I've been curious about AI coding assistants but hadn't found one that felt genuinely useful. Most feel like overhyped autocomplete. But when ChatGPT's Codex launched, I decided to give it a go by connecting it to my howibuild.ai repo and see what it could do.
 
-The results opened my mind to what's possible. It found an embarrassing typo I'd missed, added ~1,300 lines of test code (then fixed it when I challenged it), and showed me new ways to think about development workflows. Here's exactly what happened and why it matters for solo developers.
+The results opened my mind to what's possible. It found an embarrassing typo I'd missed, added 1,300 lines of test code (then fixed it when I challenged it), and showed me new ways to think about development workflows. Here's exactly what happened and why it matters for solo developers.
 
 ## The Setup Confusion
 
@@ -48,11 +47,11 @@ This was both impressive and embarrassing. How had I missed this? The fix was si
 
 ## The 1,500-Line Test Overkill
 
-Codex also proposed adding tests for my vote counting functionality. Great idea, I thought. Then I saw the implementation: ~1,300 lines of test code!
+Codex also proposed adding tests for my vote counting functionality. Great idea, I thought. Then I saw the implementation: 1,300 lines of test code!
 
 This felt excessive for a simple vote counter. I challenged it:
 
->_"Why have you added 1500 lines of code? That feels excessive..?"_
+>_"Why have you added 1300 lines of code? That feels excessive..?"_
 
 Codex responded by rewriting the tests using Node.js's built-in `node:test` module instead of pulling in external testing frameworks. The result was much cleaner and more appropriate for the scope.
 
