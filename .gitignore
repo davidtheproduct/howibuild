@@ -49,3 +49,6 @@ temp/
 pnpm-lock.yaml
 
 .astro
+# Local draft posts (do not commit)
+src/data/drafts/**/*.md
+src/data/drafts/**/*.mdx
