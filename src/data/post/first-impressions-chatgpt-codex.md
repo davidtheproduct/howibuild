@@ -1,6 +1,6 @@
 ---
 publishDate: 2025-09-22T10:00:00.000Z
-title: First Impressions: ChatGPT Codex Opens New Possibilities
+title: "First Impressions: ChatGPT Codex Opens New Possibilities"
 excerpt: I tested ChatGPT's Codex AI coding agent for the first time. It found a typo I missed, added 1,300 lines of test code, and opened my mind to what's possible with AI-assisted development. Here's what happened and why it matters for solo developers.
 image: ~/assets/images/ai-assistant-for-typos.png
 author: David Webb
