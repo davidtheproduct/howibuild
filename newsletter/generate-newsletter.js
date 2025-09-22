@@ -194,7 +194,7 @@ async function main() {
     console.log('\n📋 Next steps:');
     console.log('1. Review the generated newsletter');
     console.log('2. Update the "Quick Tools Roundup" section with any new tools');
-    console.log('3. Copy the content into Beehiv');
+    console.log('3. Copy the content into Beehiiv');
     console.log('4. Send to your subscribers!');
     
   } catch (error) {

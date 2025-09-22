@@ -49,7 +49,7 @@ We take reasonable steps to protect your information, but no system is 100% secu
 We use trusted services to run our website and send newsletters. We only share the minimum information necessary:
 
 - **PostHog** - Analytics service to understand how our content performs ([Privacy Policy](https://posthog.com/privacy))
-- **Beehiv** - Email platform for our newsletter ([Privacy Policy](https://beehiv.com/privacy))
+- **Beehiiv** - Email platform for our newsletter ([Privacy Policy](https://beehiiv.com/privacy))
 
 These services have their own privacy policies and data practices. We chose them because they respect user privacy and provide clear data controls.
 

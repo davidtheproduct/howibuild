@@ -31,20 +31,17 @@ const buttonStyles = compact
 
 <script>
   async function trackVote(topicId, topicTitle) {
-    console.log('TrackVote called with:', { topicId, topicTitle }); // Debug log
-    
     // Track the vote in PostHog
     if (window.posthog) {
-      window.posthog.capture('topic_vote', { 
+      window.posthog.capture('topic_vote', {
         topic_id: topicId,
         topic_title: topicTitle,
         timestamp: new Date().toISOString()
       });
-      console.log('PostHog capture called for topic_vote'); // Debug log
     } else {
       console.warn('PostHog not available');
     }
-    
+
     // Optimistic update (immediate UI feedback)
     const countElement = document.getElementById(`votes-${topicId}`);
     if (countElement) {
@@ -52,7 +49,6 @@ const buttonStyles = compact
       const newCount = currentCount + 1;
       countElement.textContent = newCount;
       countElement.setAttribute('aria-label', `${newCount} votes`);
-      console.log('Updated vote count for', topicId, 'to', newCount); // Debug log
     }
 
     // Fetch real count after delay to allow PostHog to process
@@ -62,17 +58,14 @@ const buttonStyles = compact
         if (response.ok) {
           const data = await response.json();
           const realCount = data.voteCounts[topicId] || 0;
-          
+
           if (countElement) {
             const currentDisplayCount = parseInt(countElement.textContent) || 0;
-            
+
             // Only update if real count is higher (or significantly different) to avoid reverting optimistic updates
             if (realCount >= currentDisplayCount || Math.abs(realCount - currentDisplayCount) > 1) {
               countElement.textContent = realCount;
               countElement.setAttribute('aria-label', `${realCount} votes`);
-              console.log('Updated with real count for', topicId, ':', realCount, '(was displaying:', currentDisplayCount, ')');
-            } else {
-              console.log('Keeping optimistic count for', topicId, '- real:', realCount, 'displaying:', currentDisplayCount);
             }
           }
         }
@@ -82,24 +75,34 @@ const buttonStyles = compact
     }, 5000); // 5 second delay to allow PostHog processing
   }
 
-  // Use event delegation to handle clicks on any thumbs-up button
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.thumbs-up-btn')) {
-      e.preventDefault();
-      
-      const button = e.target.closest('.thumbs-up-btn');
-      const topicId = button.dataset.topicId;
-      const topicTitle = button.dataset.topicTitle;
-      
-      console.log('Button clicked:', { topicId, topicTitle }); // Debug log
-      
-      if (topicId && topicTitle) {
-        trackVote(topicId, topicTitle);
-      } else {
-        console.error('Missing topic data on button:', button);
-      }
+  const handlerKey = '__howibuildThumbsUpClickHandler';
+  const handleThumbsUpClick = (event) => {
+    if (!(event?.target instanceof Element)) {
+      return;
     }
-  });
+
+    const button = event.target.closest('.thumbs-up-btn');
+    if (!button) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const topicId = button.dataset.topicId;
+    const topicTitle = button.dataset.topicTitle;
+
+    if (topicId && topicTitle) {
+      trackVote(topicId, topicTitle);
+    } else {
+      console.error('Missing topic data on button:', button);
+    }
+  };
+
+  // Use event delegation to handle clicks on any thumbs-up button, but only register once globally
+  if (typeof window !== 'undefined' && !Reflect.get(window, handlerKey)) {
+    Reflect.set(window, handlerKey, handleThumbsUpClick);
+    document.addEventListener('click', handleThumbsUpClick);
+  }
 </script>
 
 <style>

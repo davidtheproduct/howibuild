@@ -1,22 +1,24 @@
 ---
-title: Building Newsletter System with Beehiv + Astro Integration
-excerpt: Complete guide to setting up a professional newsletter system using Beehiv, from domain configuration to automated content generation. Includes real code examples and troubleshooting fixes.
+title: Building Newsletter System with Beehiiv + Astro Integration
+excerpt: Complete guide to setting up a professional newsletter system using Beehiiv, from domain configuration to automated content generation. Includes real code examples and troubleshooting fixes.
 publishDate: 2025-09-15T00:00:00Z
 image: ~/assets/images/newsletter-creation.png
 author: David Webb
 category: build-log
 tags:
   - newsletter
-  - beehiv
+  - beehiiv
   - email-marketing
   - automation
   - audience-building
   - astro
+metadata:
+  canonical: https://howibuild.ai/creating-beehiiv-newsletter
 ---
 
-# Building Newsletter System with Beehiv + Astro Integration
+# Building Newsletter System with Beehiiv + Astro Integration
 
-I launched howibuild.ai without a newsletter system to start small. Today I built a complete newsletter infrastructure using Beehiv, integrated it with my Astro site, and automated content generation. Here's the exact process and the issues that nearly broke everything.
+I launched howibuild.ai without a newsletter system to start small. Today I built a complete newsletter infrastructure using Beehiiv, integrated it with my Astro site, and automated content generation. Here's the exact process and the issues that nearly broke everything.
 
 ## The Problem
 
@@ -26,11 +28,11 @@ I've worked with some great Marketers but have minimal hands-on email marketing 
 - Automate content generation from my blog posts
 - Maintain brand consistency across platforms
 
-After researching Substack, MailChimp, and Beehiv, I chose **Beehiv** for its generous free tier and clean developer-friendly interface.
+After researching Substack, MailChimp, and Beehiiv, I chose **Beehiiv** for its generous free tier and clean developer-friendly interface.
 
 ## Solution Overview
 
-- **Platform**: Beehiv free plan with custom domain
+- **Platform**: Beehiiv free plan with custom domain
 - **Integration**: Astro component for site-wide signup forms
 - **Semi-automation**: Custom Node.js script for RSS-to-newsletter generation with human oversight
 - **Branding**: Consistent fonts and colors across platforms
@@ -40,19 +42,19 @@ After researching Substack, MailChimp, and Beehiv, I chose **Beehiv** for its ge
 
 ### Step 1: Domain Configuration
 
-**Critical**: Link Beehiv to your domain without overriding your main site.
+**Critical**: Link Beehiiv to your domain without overriding your main site.
 
 ```bash
-# Beehiv domain setup
-newsletter.howibuild.ai → Beehiv newsletter site
+# Beehiiv domain setup
+newsletter.howibuild.ai → Beehiiv newsletter site
 hello@howibuild.ai → Contact email
 # Avoid: mail.howibuild.ai (not needed initially)
 ```
 
 **What I did:**
-1. Added `newsletter.howibuild.ai` subdomain in Beehiv dashboard
-2. Used Beehiv's automated DNS configuration with Cloudflare, powered by Entri
-3. **Watchout**: Beehiv has website creation features - don't accidentally override your main site!
+1. Added `newsletter.howibuild.ai` subdomain in Beehiiv dashboard
+2. Used Beehiiv's automated DNS configuration with Cloudflare, powered by Entri
+3. **Watch out**: Beehiiv has website creation features - don't accidentally override your main site!
 
 This creates a dedicated newsletter site while keeping your main site untouched.
 
@@ -97,7 +99,7 @@ This creates a dedicated newsletter site while keeping your main site untouched.
 ### Step 4: Content Automation Script
 
 **The RSS Challenge:**
-Beehiv free plan doesn't support RSS integration (requires $99/month Enterprise plan). I built a semi-automated workaround.
+Beehiiv free plan doesn't support RSS integration (requires $99/month Enterprise plan). I built a semi-automated workaround.
 
 **Semi-Automated Newsletter Generation:**
 
@@ -153,7 +155,7 @@ ${posts.join('\n\n')}
 
 ### Step 5: Welcome Email Automation
 
-**Beehiv Automation Setup:**
+**Beehiiv Automation Setup:**
 - Rewrote default welcome email
 - Added inbox placement suggestion
 - **Critical**: Set both trigger AND email to "active" (automations are inactive by default)
@@ -167,21 +169,21 @@ ${posts.join('\n\n')}
 
 ### 1. Domain Confusion (20 minutes lost)
 **Problem**: Got confused by mail.howibuild.ai vs newsletter.howibuild.ai vs hello@howibuild.ai
-**Root cause**: Beehiv suggests multiple domain options during setup
+**Root cause**: Beehiiv suggests multiple domain options during setup
 **Fix**: Use newsletter.howibuild.ai for site, hello@howibuild.ai for contact, ignore mail.howibuild.ai
 
-### 2. Beehiv Page Overload (60 minutes burned)
+### 2. Beehiiv Page Overload (60 minutes burned)
 **Problem**: Default setup adds tags, recommendations, and other pages
-**Root cause**: Beehiv tries to create a full content platform, not just newsletter
+**Root cause**: Beehiiv tries to create a full content platform, not just newsletter
 **Fix**: Strip back to essentials. You can always add more pages later when you have an audience.
 
 ### 3. RSS Integration Limitations (10 minutes lost)
-**Problem**: Beehiv free plan doesn't support RSS integration
+**Problem**: Beehiiv free plan doesn't support RSS integration
 **Root cause**: RSS automation requires Enterprise plan ($99/month)
 **Fix**: Created custom Node.js script to generate newsletters from RSS feed
 
 ### 4. Image Resizing Issues
-**Problem**: Beehiv required specific image dimensions for logos
+**Problem**: Beehiiv required specific image dimensions for logos
 **Root cause**: SVG files needed exact pixel dimensions
 **Fix**: Used `sips` command in terminal to resize SVGs:
 ```bash
@@ -189,7 +191,7 @@ sips -z 64 64 logo.svg --out logo-64.png
 ```
 
 ### 5. Embed Form Location (20 minutes wasted)
-**Problem**: Couldn't find subscriber form creation in Beehiv dashboard
+**Problem**: Couldn't find subscriber form creation in Beehiiv dashboard
 **Root cause**: Searched for "embed subscriber" instead of navigating to correct section
 **Fix**: Navigate to **Audience → Subscriber Forms** (not obvious location)
 
@@ -209,7 +211,7 @@ sips -z 64 64 logo.svg --out logo-64.png
 - Semi-automation: 80% of newsletter content generated automatically, 20% human curation
 
 **What I'd do differently:**
-1. Start with minimal pages in Beehiv (newsletter + subscribe only)
+1. Start with minimal pages in Beehiiv (newsletter + subscribe only)
 2. Set up welcome automation immediately after signup
 3. Build newsletter automation script before manual newsletter creation
 

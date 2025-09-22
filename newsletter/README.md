@@ -5,10 +5,10 @@ Simple script to generate weekly newsletters from your RSS feed.
 ## Usage
 
 ```bash
-# Generate newsletter for the previous week (Monday to Sunday, uses default summary)
+# Generate newsletter for the previous week (7-day window, defaults to previous Monday)
 node generate-newsletter.js
 
-# Generate newsletter for a specific week starting on Monday (uses default summary)
+# Generate newsletter for a specific week starting on the date you provide (uses default summary)
 node generate-newsletter.js 2025-09-09
 
 # Generate newsletter with custom summary line
@@ -24,8 +24,8 @@ node generate-newsletter.js 2025-09-09 "This week was wild. From launching the s
 
 ## Week Logic
 
-- **Default behavior**: Uses the previous Monday as the start of the week
-- **Monday start**: Weeks run Monday to Sunday (standard business week)
+- **Default behavior**: Uses the previous Monday as the start of the window
+- **Week window**: Covers seven days starting from the supplied date (end date logged is the exclusive upper bound)
 - **Perfect for Sunday/Monday runs**: Run on Sunday or Monday to get the previous week's content
 
 ## Output
@@ -43,7 +43,7 @@ After running the script, you'll need to:
 
 1. **Review the generated newsletter**
 2. **Update the "Quick Tools Roundup"** section with any new tools (add **NEW** tags)
-3. **Copy content into Beehiv**
+3. **Copy content into Beehiiv**
 4. **Send to subscribers**
 
 ## Example

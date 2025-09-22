@@ -1,4 +1,4 @@
-exports.handler = async (event, context) => {
+export const handler = async (event) => {
   // Only allow GET requests
   if (event.httpMethod !== 'GET') {
     return {
@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
   }
 
   const { topicIds } = event.queryStringParameters || {};
-  
+
   if (!topicIds) {
     return {
       statusCode: 400,
@@ -36,10 +36,12 @@ exports.handler = async (event, context) => {
     for (const topicId of topicIdArray) {
       try {
         const response = await fetch(
-          `${host}/api/projects/${projectId}/events/?event=topic_vote&properties=${encodeURIComponent(JSON.stringify({ topic_id: topicId }))}`,
+          `${host}/api/projects/${projectId}/events/?event=topic_vote&properties=${encodeURIComponent(
+            JSON.stringify({ topic_id: topicId })
+          )}`,
           {
             headers: {
-              'Authorization': `Bearer ${apiKey}`,
+              Authorization: `Bearer ${apiKey}`,
               'Content-Type': 'application/json'
             }
           }
@@ -76,3 +78,5 @@ exports.handler = async (event, context) => {
     };
   }
 };
+
+export default handler;
