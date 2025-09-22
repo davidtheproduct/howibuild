@@ -121,7 +121,7 @@ Props:
 - `/.netlify/functions/get-vote-counts.js` - Netlify function
 - Accepts `?topicIds=topic1,topic2` parameter
 - Queries PostHog API for event counts per topic
-- `ThumbsUpButton` calls function 2s after vote for real count
+- `ThumbsUpButton` calls function 5s after vote for real count
 - **UX Flow:** Click → optimistic +1 → PostHog capture → 5s delay → fetch real count → update display (only if higher)
 - **Optimistic Protection:** Real count only overwrites display if higher than current, preventing reversion due to PostHog ingestion latency
 
