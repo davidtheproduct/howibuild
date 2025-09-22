@@ -15,7 +15,7 @@ Central guidelines for howibuild.ai content creation. This is a living document;
   - Current state truths: “PostHog has ingestion latency”, “Counts update after 5s”.
 - **Use future sparingly** for immediate roadmap: “Next I’ll add duplicate-vote protection.”
 - **Avoid locale specific language**
-  - To appeal to a larger audience avoid words that are spelled differently between en-US and en-AU eg color/colour, prioritize/prioritise, behavior/behaviour, mom/mum etc.
+  - To appeal to a larger audience avoid words that are spelled differently between en-US and en-AU eg color/colour, prioritize/prioritise, prioritization/prioritisation, behavior/behaviour, customize/customise, customization, customisation, mom/mum etc.
 - **Avoid dashes in sentences**
   - Use periods instead of dashes for better readability: "This worked. Meta? Maybe." not "This worked—meta? Maybe."
 
@@ -48,8 +48,8 @@ Central guidelines for howibuild.ai content creation. This is a living document;
 ## Frontmatter Standards
 - **publishDate**: Use `new Date().toISOString()` or current date (NOT training data dates)
 - **author**: "David Webb" (unless specified otherwise)
-- **category**: Object format `{ slug: "build-log", title: "Build Log" }` (backend-only, not displayed on frontend)
-- **tags**: Object format `{ slug: "posthog", title: "PostHog" }` (preferred over simple strings)
+- **category**: String format `"build-log"` (backend-only, not displayed on frontend)
+- **tags**: String format `"posthog"` (simple strings, not objects)
 - **image**: `~/assets/images/[descriptive-name].png` (descriptive, hyphenated)
 
 **Date Warning**: Always use current date, never dates from training data (e.g., 2025-01-17)
@@ -65,22 +65,17 @@ For posts published before these guidelines were established:
 - **Benefits**: Consistent data structure, future-proofing, better site organization
 
 ### **Updates Required**:
-1. **Convert tags to object format**:
+1. **Ensure tags are in string format**:
    ```yaml
-   # From:
+   # Correct format:
    tags:
-     - posthog
-     - astro
-   
-   # To:
-   tags:
-     - { slug: "posthog", title: "PostHog" }
-     - { slug: "astro", title: "Astro" }
+     - "posthog"
+     - "astro"
    ```
 
 2. **Add category field**:
    ```yaml
-   category: { slug: "build-log", title: "Build Log" }
+   category: "build-log"
    ```
 
 3. **Set author field**:
@@ -91,9 +86,9 @@ For posts published before these guidelines were established:
 4. **Verify publishDate** (ensure current date, not training data)
 
 ### **Category Mapping**:
-- **Implementation posts**: `{ slug: "build-log", title: "Build Log" }`
-- **Founder content**: `{ slug: "founding", title: "Founding" }`
-- **Design posts**: `{ slug: "design", title: "Design" }`
+- **Implementation posts**: `"build-log"`
+- **Founder content**: `"founding"`
+- **Design posts**: `"design"`
 
 ### **Execution**:
 - **Timing**: Execute in new session to manage context
