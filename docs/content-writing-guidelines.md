@@ -46,15 +46,59 @@ Central guidelines for howibuild.ai content creation. This is a living document;
 - **Quick wins**: 800–1,200 words
 
 ## Frontmatter Standards
+
+### Required Field Order (Critical for Build Success)
+Follow this exact order to prevent YAML parsing errors in production:
+
+```yaml
+---
+publishDate: 2025-01-17T10:00:00.000Z
+title: Your Post Title
+excerpt: Your post excerpt here
+image: ~/assets/images/descriptive-name.png
+author: David Webb
+category: build-log
+tags:
+  - tag1
+  - tag2
+  - tag3
+canonical: https://howibuild.ai/your-post-slug
+---
+```
+
+### Field Requirements
 - **publishDate**: Use `new Date().toISOString()` or current date (NOT training data dates)
+- **title**: Quote if it contains `:` or YAML-reserved characters. Safe to always quote titles.
 - **author**: "David Webb" (unless specified otherwise)
-- **category**: String format `"build-log"` (backend-only, not displayed on frontend)
-- **tags**: String format `"posthog"` (simple strings, not objects)
+- **category**: Unquoted string format `build-log` (backend-only, not displayed on frontend)
+- **tags**: Unquoted strings, not objects (e.g., `- posthog` not `- "posthog"`)
 - **image**: `~/assets/images/[descriptive-name].png` (descriptive, hyphenated)
+- **canonical**: Full URL for SEO
 
 **Date Warning**: Always use current date, never dates from training data (e.g., 2025-01-17)
 
 **Category Strategy**: Categories are captured in backend for future use but not displayed on frontend to avoid confusion with primary "Build Logs" navigation.
+
+**YAML Syntax**: Use unquoted strings for category and tags. Quote `title` if it includes `:`, `#`, `{}`, `[]`, or leading/trailing spaces. Field order matters for build consistency.
+
+### YAML gotchas (build breakers)
+- **Unquoted colon in title** breaks YAML.
+- **Leading/trailing spaces** in values can cause parse issues.
+- **Reserved characters** (`:`, `#`, `{}`, `[]`, `,`) in `title` should be quoted.
+
+Bad:
+```yaml
+---
+title: First Impressions: ChatGPT Codex Opens New Possibilities
+---
+```
+
+Good:
+```yaml
+---
+title: "First Impressions: ChatGPT Codex Opens New Possibilities"
+---
+```
 
 ## Updating Existing Posts
 
@@ -108,6 +152,15 @@ For posts published before these guidelines were established:
 - **Keywords**: Integrate naturally; no stuffing. Use synonyms.
 - **Internal links**: Link relevant posts (e.g., Coming Up, related builds).
 - **Images**: Descriptive `alt` text with purpose/context.
+
+### Images in body content
+- **Path rule (critical)**: Always reference local images with the alias path `~/assets/images/...` so Astro processes and optimizes them. 
+  - Bad: `![Alt](/src/assets/images/example.png)`
+  - Good: `![Alt](~/assets/images/example.png)`
+- **Filenames**: lowercase, hyphenated, descriptive (e.g., `codex-typo-fix.png`).
+- **Formats**: Prefer PNG/JPG sources; the build will generate optimized WebP/JPG variants automatically.
+- **Alt text**: Explain purpose/function, not appearance only.
+- **Do not** use absolute file URLs to local paths or `/public/src/...`—they bypass Astro’s optimizer and may 404 in production.
 
 ## Style and clarity
 - **Tone**: Technical peer, not lecturer. Confident, not hypey.
@@ -174,6 +227,9 @@ Use Nir Eyal’s Hooked framework to shape repeatable reader habits.
 - DO NOT: Hide counts or progress—make progress visible.
 
 ## Publishing checklist
+- [ ] **Frontmatter validation**: Field order matches template exactly
+- [ ] **YAML syntax**: Unquoted strings for category/tags, no hidden characters
+- [ ] **Images**: Body images use `~/assets/images/...` alias and have descriptive alt text
 - [ ] First‑person past tense where narrative applies
 - [ ] Clear hook and problem framing
 - [ ] Real code + file paths + configs

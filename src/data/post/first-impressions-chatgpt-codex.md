@@ -41,7 +41,7 @@ Within minutes, it returned four tasks. The first one made me cringe...
 
 Codex found that I'd misspelled "Beehiiv" as "Beehiv" throughout my newsletter post. I'd been writing about Beehiiv for a week and never caught this. The AI spotted it immediately and proposed a fix.
 
-![Codex found the typo I missed](/src/assets/images/codex-typo-fix.png)
+![Codex found the typo I missed](~/assets/images/codex-typo-fix.png)
 
 This was both impressive and embarrassing. How had I missed this? The fix was simple—just a find-and-replace across the file—but it highlighted something important: use AI for what it's good at.
 
