@@ -1,7 +1,8 @@
 ---
+publishDate: 2025-01-17T10:00:00.000Z
 title: First Impressions: ChatGPT Codex Opens New Possibilities
 excerpt: I tested ChatGPT's Codex AI coding agent for the first time. It found a typo I missed, added 1,500 lines of test code, and opened my mind to what's possible with AI-assisted development. Here's what happened and why it matters for solo developers.
-publishDate: 2025-01-17T10:00:00.000Z
+image: ~/assets/images/ai-assistant-for-typos.png
 author: David Webb
 category: build-log
 tags:
@@ -10,7 +11,6 @@ tags:
   - deployment
   - productivity
   - tools
-image: ~/assets/images/ai-assistant-for-typos.png
 canonical: https://howibuild.ai/first-impressions-chatgpt-codex
 ---
 
