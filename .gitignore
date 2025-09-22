@@ -52,3 +52,8 @@ pnpm-lock.yaml
 # Local draft posts (do not commit)
 src/data/drafts/**/*.md
 src/data/drafts/**/*.mdx
+
+# Ignore newsletter drafts
+newsletter/**
+!newsletter/README.md
+!newsletter/generate-newsletter.cjs
