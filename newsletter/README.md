@@ -5,28 +5,28 @@ Simple script to generate weekly newsletters from your RSS feed.
 ## Usage
 
 ```bash
-# Generate newsletter for the previous week (7-day window, defaults to previous Monday)
-node generate-newsletter.js
+# Generate newsletter for the last 7 days ending today
+node generate-newsletter.cjs
 
-# Generate newsletter for a specific week starting on the date you provide (uses default summary)
-node generate-newsletter.js 2025-09-09
+# Generate newsletter for the last 7 days ending on a specific date (YYYY-MM-DD)
+node generate-newsletter.cjs 2025-09-22
 
 # Generate newsletter with custom summary line
-node generate-newsletter.js 2025-09-09 "This week was wild. From launching the site in 3 hours to fixing database dramas and creating custom wordmarks, here's what went down in the trenches:"
+node generate-newsletter.cjs 2025-09-22 "This week was wild. From launching the site in 3 hours to fixing database dramas and creating custom wordmarks, here's what went down in the trenches:"
 ```
 
 ## What it does
 
 1. **Fetches your RSS feed** from `https://howibuild.ai/rss.xml`
-2. **Filters posts** from the specified week (Monday to Sunday)
+2. **Filters posts** from the last 7 days ending on the provided date (inclusive)
 3. **Generates markdown** using the exact excerpts from your posts
-4. **Saves to file** like `weekly-wrap-2025-09-09.md`
+4. **Saves to file** like `weekly-wrap-2025-09-22.md`
 
-## Week Logic
+## Window Logic
 
-- **Default behavior**: Uses the previous Monday as the start of the window
-- **Week window**: Covers seven days starting from the supplied date (end date logged is the exclusive upper bound)
-- **Perfect for Sunday/Monday runs**: Run on Sunday or Monday to get the previous week's content
+- **Default behavior**: Uses today as the end date
+- **Window**: Sliding 7 days, inclusive of the end date (internally uses an exclusive upper bound)
+- **Great for weekly cadence**: Run on any day to capture the last 7 days
 
 ## Output
 

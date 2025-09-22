@@ -1,17 +1,11 @@
 #!/usr/bin/env node
 
 /**
- * Newsletter Generator for howibuild.ai
- * 
- * Usage: node generate-newsletter.js [week-start-date] [summary-line]
- * 
- * Example: node generate-newsletter.js 2025-09-09 "This week was wild. From launching the site in 3 hours to fixing database dramas and creating custom wordmarks, here's what went down in the trenches:"
- * 
- * This script:
- * 1. Fetches your RSS feed
- * 2. Filters posts from the last week
- * 3. Generates newsletter markdown using excerpts
- * 4. Outputs to newsletter/weekly-wrap-[date].md
+ * Newsletter Generator for howibuild.ai (CommonJS)
+ *
+ * Usage: node generate-newsletter.cjs [end-date] [summary-line]
+ * - end-date is the inclusive end of the 7-day window (YYYY-MM-DD)
+ * - if omitted, today is used
  */
 
 const https = require('https');
@@ -20,32 +14,42 @@ const path = require('path');
 
 // Configuration
 const RSS_URL = 'https://howibuild.ai/rss.xml';
-const NEWSLETTER_DIR = path.join(__dirname);
+const NEWSLETTER_DIR = __dirname;
 const SITE_URL = 'https://howibuild.ai';
 
-// Get week start date and summary line from command line
-const weekStartArg = process.argv[2];
+// Get end date (inclusive) and summary line from command line
+const endDateArg = process.argv[2];
 const summaryLine = process.argv[3];
 
-// Default to previous Monday if no date provided
-function getPreviousMonday() {
-  const today = new Date();
-  const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // If Sunday, go back 6 days to Monday
-  const monday = new Date(today);
-  monday.setDate(today.getDate() - daysToSubtract);
-  monday.setHours(0, 0, 0, 0); // Start of day
-  return monday;
+// Helpers for date handling at local day boundaries
+function startOfDay(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
 }
 
-const weekStart = weekStartArg ? new Date(weekStartArg) : getPreviousMonday();
-const weekEnd = new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000);
+function parseDateAtLocalStart(dateStr) {
+  // Construct via YYYY-MM-DD components to avoid TZ surprises
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return new Date(y, m - 1, d, 0, 0, 0, 0);
+}
+
+function todayAtStartOfDay() {
+  return startOfDay(new Date());
+}
+
+// Sliding 7-day window ending on endDate (inclusive)
+const endDate = endDateArg ? parseDateAtLocalStart(endDateArg) : todayAtStartOfDay();
+const startDate = new Date(endDate.getTime() - 6 * 24 * 60 * 60 * 1000);
+const endDateExclusive = new Date(endDate.getTime() + 24 * 60 * 60 * 1000);
 
 // Default summary line if none provided
 const defaultSummary = "This week was wild. From launching the site in 3 hours to fixing database dramas and creating custom wordmarks, here's what went down in the trenches:";
 const finalSummary = summaryLine || defaultSummary;
 
-console.log(`📰 Generating newsletter for week: ${weekStart.toISOString().split('T')[0]} to ${weekEnd.toISOString().split('T')[0]}`);
+console.log(
+  `📰 Generating newsletter for last 7 days: ${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]}`
+);
 
 // Fetch RSS feed
 function fetchRSS() {
@@ -87,19 +91,17 @@ function parseRSS(xml) {
 
 // Filter posts from the last week
 function filterRecentPosts(posts) {
-  return posts.filter(post => {
-    return post.pubDate >= weekStart && post.pubDate < weekEnd;
-  });
+  return posts.filter((post) => post.pubDate >= startDate && post.pubDate < endDateExclusive);
 }
 
 // Generate newsletter markdown
 function generateNewsletter(posts) {
-  const weekStartStr = weekStart.toLocaleDateString('en-US', { 
+  const weekStartStr = startDate.toLocaleDateString('en-US', { 
     month: 'long', 
     day: 'numeric', 
     year: 'numeric' 
   });
-  const weekEndStr = weekEnd.toLocaleDateString('en-US', { 
+  const weekEndStr = endDate.toLocaleDateString('en-US', { 
     month: 'long', 
     day: 'numeric', 
     year: 'numeric' 
@@ -165,17 +167,17 @@ async function main() {
     console.log('📝 Parsing RSS feed...');
     const allPosts = parseRSS(rssXml);
     
-    console.log('🔍 Filtering posts from last week...');
+    console.log('🔍 Filtering posts from the last 7 days...');
     const recentPosts = filterRecentPosts(allPosts);
     
     if (recentPosts.length === 0) {
-      console.log('❌ No posts found for the specified week.');
-      console.log(`   Looking for posts between: ${weekStart.toISOString()} and ${weekEnd.toISOString()}`);
+      console.log('❌ No posts found for the specified window.');
+      console.log(`   Looking for posts between: ${startDate.toISOString()} and ${endDateExclusive.toISOString()}`);
       console.log(`   Found ${allPosts.length} total posts in RSS feed.`);
       return;
     }
     
-    console.log(`✅ Found ${recentPosts.length} posts for this week:`);
+    console.log(`✅ Found ${recentPosts.length} posts in the last 7 days:`);
     recentPosts.forEach(post => {
       console.log(`   - ${post.title} (${post.pubDate.toISOString().split('T')[0]})`);
     });
@@ -184,7 +186,7 @@ async function main() {
     const newsletter = generateNewsletter(recentPosts);
     
     // Save to file
-    const filename = `weekly-wrap-${weekStart.toISOString().split('T')[0]}.md`;
+    const filename = `weekly-wrap-${endDate.toISOString().split('T')[0]}.md`;
     const filepath = path.join(NEWSLETTER_DIR, filename);
     
     fs.writeFileSync(filepath, newsletter);
