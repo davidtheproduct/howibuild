@@ -103,42 +103,15 @@ beehiiv free plan doesn't support RSS integration (requires $99/month Enterprise
 
 **Semi-Automated Newsletter Generation:**
 
-```javascript
-// newsletter/generate-newsletter.js
-const RSSParser = require('rss-parser');
-const fs = require('fs');
+```bash
+# Generate newsletter for last 7 days ending today
+node newsletter/generate-newsletter.cjs
 
-async function generateNewsletter(date, opening) {
-  const parser = new RSSParser();
-  const feed = await parser.parseURL('https://howibuild.ai/rss.xml');
-  
-  const posts = feed.items
-    .filter(item => {
-      const postDate = new Date(item.pubDate);
-      const targetDate = new Date(date);
-      return postDate >= targetDate && postDate < new Date(targetDate.getTime() + 7 * 24 * 60 * 60 * 1000);
-    })
-    .map(item => `## ${item.title}\n${item.contentSnippet}\n[Read more](${item.link})`);
-  
-  const newsletter = `# Weekly Wrap: ${date}
-
-${opening}
-
-## Build Logs This Week
-${posts.join('\n\n')}
-
-## Tools Roundup
-[Add manual tools section]
-
----
-*Want to suggest what I should build next? [Vote on upcoming topics](https://howibuild.ai/coming-up).*`;
-
-  fs.writeFileSync(`newsletter-${date}.md`, newsletter);
-  console.log(`Newsletter generated: newsletter-${date}.md`);
-}
-
-// Usage: node generate-newsletter.js 2025-01-17 "This week was wild..."
+# Or specify end date and summary
+node newsletter/generate-newsletter.cjs 2025-09-22 "This week was wild..."
 ```
+
+Under the hood, the script fetches `https://howibuild.ai/rss.xml`, filters posts in a 7‑day window ending on the given date (inclusive), and writes `newsletter/weekly-wrap-YYYY-MM-DD.md`. It’s implemented in CommonJS (`.cjs`) for compatibility with the repo’s ESM setting in `package.json`.
 
 **Process:**
 1. Script fetches RSS feed from howibuild.ai
