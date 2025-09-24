@@ -1,5 +1,5 @@
 ---
-publishDate: 2025-09-23T00:00:00.000Z
+publishDate: 2025-09-24T00:00:00.000Z
 title: "Monorepo 101: What It Is, Why It Matters, and Things To Consider"
 excerpt: A simple guide to monorepos for founders and non‑technical teammates. What a monorepo is, when it helps, when it hurts, and how to wrap your head around it conceptually.
 image: ~/assets/images/monorepo-hero.png
@@ -19,9 +19,9 @@ I stumbled across the term “monorepo” recently when I was researching best p
 
 ## What is a monorepo?
 
-A monorepo is a single repository that contains multiple apps and shared building blocks (like login, UI, and payments). The alternative is a “many repos” setup where each app lives in its own repo.
+A monorepo is a single repository that contains multiple apps and shared building blocks (like login, UI, and payments). The alternative is a “many repos” setup where each app lives in its own repo and does not share code.
 
-For solo founders and small teams (≤4 people), the real question isn’t “what do big tech companies use?”—it’s: will this help you ship faster with fewer surprises? Sometimes yes. Sometimes no.
+For solo founders and small teams (≤4 people), the real question isn’t _“what do big tech companies use?”_, it’s _"will this help you ship faster with fewer surprises?"_ Sometimes yes. Sometimes no...
 
 ## The picture (two views)
 
@@ -38,7 +38,7 @@ repo/
       src/
     admin/      → admin.yourdomain.com
       src/
-  packages/     → Shared building blocks used by all apps (e.g., auth, UI, payments)
+  packages/     → Shared building blocks used by all apps
     auth/
     ui/
     payments/
@@ -51,7 +51,7 @@ repo/
 ```text
 repo-1/          → yourdomain-1.com
   src/
-  packages/     → building blocks used by app 1 (no visibility or sharing with app 2)
+  packages/     → building blocks used by app 1 (not shared)
     auth/
     ui/
     payments/
@@ -61,7 +61,7 @@ repo-1/          → yourdomain-1.com
 
 repo-2/          → yourdomain-2.com
   src/
-  packages/     → building blocks used by app 2 (no visibility or sharing with app 1)
+  packages/     → building blocks used by app 2 (not shared)
     auth/
     ui/
     payments/
@@ -76,7 +76,7 @@ repo-2/          → yourdomain-2.com
 
 ## Top Level Business Benefits
 
-- Faster shipping: change a shared thing once (e.g., brand color) and all apps benefit.
+- Faster shipping: change a shared thing once (e.g., brand from green to blue) and all apps benefit.
 - Consistent brand: the same button styles and UI patterns show up everywhere.
 - Independence: one app can go down without taking the others with it; deploy fixes to just the app that needs them.
 
@@ -88,7 +88,7 @@ repo-2/          → yourdomain-2.com
 - Fewer version mismatches across apps
 - Shared tooling, linting, and CI improve quality
 
-(These themes show up repeatedly in guides and case studies: collaboration and consistency are the most cited wins [mindfulchase.com](https://www.mindfulchase.com/deep-dives/monorepo-fundamentals-deep-dives-into-unified-codebases/getting-started-with-monorepo-architecture-best-practices-and-principles.html?utm_source=openai), [howik.com](https://howik.com/best-practices-for-javascript-monorepos?utm_source=openai).)
+(These themes show up repeatedly in guides and case studies: collaboration and consistency are the most cited wins [mindfulchase.com](https://www.mindfulchase.com/deep-dives/monorepo-fundamentals-deep-dives-into-unified-codebases/getting-started-with-monorepo-architecture-best-practices-and-principles.html), [howik.com](https://howik.com/best-practices-for-javascript-monorepos).)
 
 ## Drawbacks / pitfalls (what actually hurt)
 - Up‑front investment: getting structure, scripts, and CI right takes longer upfront but it's likely to save time later.
@@ -118,29 +118,33 @@ Whether you import a React button or apply a CSS class on a static page, the res
 ## Should you consider a monorepo?
 
 Choose a monorepo if:
-- You have multiple apps that should share clearly defined building blocks
-- You want one design system and one login that work everywhere
-- Your team collaborates closely and prefers shared tooling and conventions
-- You have the time, patience and technical skills to spend additional time upfront on architecture
+- ✅ You have multiple apps that should share clearly defined building blocks
+- ✅ You want one design system and one login that work everywhere
+- ✅ Your team collaborates closely and prefers shared tooling and conventions
+- ✅ You have the time, patience, and technical skills to spend additional time upfront on architecture
 
 Stick with multiple repos if:
-- Projects are unrelated and won’t share code
-- You need strict, separate governance or vendor boundaries per app
-- You want to keep each app’s lifecycle completely independent
-- You don't want to invest upfront time getting it right
+- ❌ Projects are unrelated and won't share code
+- ❌ You need strict, separate governance or vendor boundaries per app
+- ❌ You want to keep each app's lifecycle completely independent
+- ❌ You don't want to invest upfront time getting it right
 
 ## Top tips if you're considering a monorepo
 
-Practical tips for implementing a monorepo
-- Invest time upfront in planning. Consider something like ChatPRD to build out your requirements.
-- If you're moving from multiple repos, document what works well so that you can carry this forward.
-- Create a 'migration' folder and copy useful files from your old repos for reuse in your monorepo.
-- Continually seek guidance and ask 'is this the simplest way we can do this?', 'Do research and present an evidence based recommendation'
-- Prefer out of the box components e.g. from shadcn/ui where possible to avoid unnecessary complexity
-- Add ENV tracking in `turbo.json` early, or production can silently use wrong env vars.
-- Add `pnpm` overrides in root `package.json` to prevent duplicate Tailwind/PostCSS versions and bloated CSS.
-- Keep deployments independent per app from day one.
-- Document ownership for `apps/*` and `packages/*` to avoid accidental cross‑coupling.
+### Planning & Migration
+- **Invest time upfront in planning** - Consider something like [ChatPRD](https://chatprd.ai) to build out your requirements
+- **Document what works** - If moving from multiple repos, capture what works well so that you are not starting from scratch
+- **Create a migration folder** - Copy useful files from old repos for reuse in your monorepo
+- **Question complexity** - Continually ask _"is this the simplest way we can do this?"_ and seek evidence-based research when considering recommendations
+
+### Technical Setup
+- **Prefer proven components** - Use out-of-the-box solutions like shadcn/ui to avoid unnecessary complexity
+- **Add ENV tracking early** - Configure `turbo.json` properly, or production can silently use wrong environment variables
+- **Prevent dependency bloat** - Add `pnpm` overrides in root `package.json` to avoid duplicate Tailwind/PostCSS versions
+
+### Deployment & Ownership
+- **Independent deployments** - Keep deployments separate per app from day one
+- **Clear ownership boundaries** - Document ownership for `apps/*` and `packages/*` to avoid accidental cross-coupling
 
 ## Getting started
 
@@ -157,5 +161,3 @@ If this helped demystify monorepos, consider subscribing for more founder‑focu
 
 - Subscribe: [newsletter.howibuild.ai/subscribe](https://newsletter.howibuild.ai/subscribe)
 - Coming Up: [howibuild.ai/coming-up](https://howibuild.ai/coming-up)
-
-> Draft for review. Not published yet.
