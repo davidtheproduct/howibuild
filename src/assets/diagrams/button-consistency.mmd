@@ -1,0 +1,29 @@
+graph LR
+    subgraph "Design System"
+        BUTTON_DEF["Button Definition<br/>• Color: #22D3EE (cyan)<br/>• Font: Inter, 16px<br/>• Padding: 12px 24px<br/>• Border radius: 8px<br/>• Hover: darker cyan"]
+    end
+    
+    subgraph "Code Implementation"
+        WEB_CODE["Main App<br/>import Button from '@sbp/ui'<br/><Button>Subscribe</Button>"]
+        ADMIN_CODE["Admin Panel<br/>import Button from '@sbp/ui'<br/><Button>Save Changes</Button>"]
+        MARKETING_CODE["Marketing Site<br/>import Button from '@sbp/ui'<br/><Button>Get Started</Button>"]
+    end
+    
+    subgraph "User Experience"
+        WEB_BUTTON["🔘 Subscribe"]
+        ADMIN_BUTTON["🔘 Save Changes"]
+        MARKETING_BUTTON["🔘 Get Started"]
+    end
+    
+    BUTTON_DEF --> WEB_CODE
+    BUTTON_DEF --> ADMIN_CODE
+    BUTTON_DEF --> MARKETING_CODE
+    
+    WEB_CODE --> WEB_BUTTON
+    ADMIN_CODE --> ADMIN_BUTTON
+    MARKETING_CODE --> MARKETING_BUTTON
+    
+    style BUTTON_DEF fill:#F59E0B,color:#000
+    style WEB_BUTTON fill:#22D3EE,color:#000
+    style ADMIN_BUTTON fill:#22D3EE,color:#000
+    style MARKETING_BUTTON fill:#22D3EE,color:#000

@@ -1,0 +1,59 @@
+flowchart LR
+    %% Matrix: columns are apps (WEB/ADMIN/MARKETING), rows are packages (P1..P5)
+    %% Left column lists package names; app columns equally defined.
+
+    %% Leftmost column: package names
+    subgraph PKG [Package]
+        PKG_P1[P1 Auth]
+        PKG_P2[P2 UI]
+        PKG_P3[P3 Payments]
+        PKG_P4[P4 Utilities]
+        PKG_P5[P5 Entitlements]
+    end
+
+    %% App columns
+    subgraph WEB [WEB]
+        WEB_P1[P1]
+        WEB_P2[P2]
+        WEB_P3[P3]
+        WEB_P4[P4]
+        WEB_P5[P5]
+    end
+
+    subgraph ADMIN [ADMIN]
+        ADMIN_P1[P1]
+        ADMIN_P2[P2]
+        ADMIN_P3[P3]
+        ADMIN_P4[P4]
+        ADMIN_P5[P5]
+    end
+
+    subgraph MARKETING [MARKETING]
+        MKT_P1[P1]
+        MKT_P2[P2]
+        MKT_P3[P3]
+        MKT_P4[P4]
+        MKT_P5[P5]
+    end
+
+    %% Align rows (package column first, then apps)
+    PKG_P1 --- WEB_P1 --- ADMIN_P1 --- MKT_P1
+    PKG_P2 --- WEB_P2 --- ADMIN_P2 --- MKT_P2
+    PKG_P3 --- WEB_P3 --- ADMIN_P3 --- MKT_P3
+    PKG_P4 --- WEB_P4 --- ADMIN_P4 --- MKT_P4
+    PKG_P5 --- WEB_P5 --- ADMIN_P5 --- MKT_P5
+
+    %% Styling
+    classDef used fill:#22D3EE,color:#000,stroke:#22D3EE,stroke-width:1px
+    classDef unused fill:#ffffff,color:#999,stroke:#ccc,stroke-width:1px
+    classDef label fill:#F59E0B,color:#000,stroke:#F59E0B,stroke-width:1px
+
+    %% Usage map (no P6 rows)
+    class WEB_P1,WEB_P2,WEB_P3,WEB_P4,WEB_P5 used
+    class ADMIN_P1,ADMIN_P2,ADMIN_P4 used
+    class ADMIN_P3,ADMIN_P5 unused
+    class MKT_P2,MKT_P4 used
+    class MKT_P1,MKT_P3,MKT_P5 unused
+
+    %% Label column styling
+    class PKG_P1,PKG_P2,PKG_P3,PKG_P4,PKG_P5 label

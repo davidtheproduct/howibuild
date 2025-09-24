@@ -1,0 +1,28 @@
+graph TD
+    %% Legend
+    LEGEND["Legend: B1 Auth • B2 UI • B3 Payments • B4 Utils • B5 Entitlements • B6 Word Engine"]
+
+    %% App containers with badges
+    subgraph WEB["Main App (apps/web)"]
+        WEB_BADGES["B1  B2  B3  B4  B5  B6"]
+    end
+
+    subgraph ADMIN["Admin Panel (apps/admin)"]
+        ADMIN_BADGES["B1  B2  B4"]
+    end
+
+    subgraph MKT["Marketing Site (apps/marketing)"]
+        MKT_BADGES["B2  B4"]
+    end
+
+    LEGEND --> WEB
+    LEGEND --> ADMIN
+    LEGEND --> MKT
+
+    style WEB fill:#22D3EE,color:#000
+    style ADMIN fill:#22D3EE,color:#000
+    style MKT fill:#22D3EE,color:#000
+
+    style WEB_BADGES fill:#ffffff,color:#000,stroke:#22D3EE,stroke-width:1px
+    style ADMIN_BADGES fill:#ffffff,color:#000,stroke:#22D3EE,stroke-width:1px
+    style MKT_BADGES fill:#ffffff,color:#000,stroke:#22D3EE,stroke-width:1px

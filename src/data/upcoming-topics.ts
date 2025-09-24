@@ -38,12 +38,6 @@ export const upcomingTopics: UpcomingTopic[] = [
     category: 'architecture'
   },
   {
-    id: 'monorepo-case-study',
-    title: 'What is a Monorepo and is it worth it?',
-    summary: 'Weighing up the pros and cons of a monorepo vs a traditional multi-repo setup',
-    category: 'architecture'
-  },
-  {
     id: 'working-concurrently',
     title: 'Working Concurrently',
     summary: 'Moving from working sequentially to working concurrently, safely without breaking things',
@@ -66,5 +60,11 @@ export const upcomingTopics: UpcomingTopic[] = [
     title: 'The Communities I Learn From',
     summary: 'Backstage preview of the communities I learn from and how they have helped me',
     category: 'community'
+  },
+  {
+    id: 'blog-creation-backstage',
+    title: 'Blog creation process and tools',
+    summary: 'Backstage reveal of the blog creation process and tools I use',
+    category: 'process'
   }
 ];

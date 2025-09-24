@@ -1,0 +1,32 @@
+graph TD
+    subgraph "Your Business Apps"
+        WEB_APP["🌐 Main App<br/>Customer product"]
+        ADMIN_APP["⚙️ Admin Panel<br/>Business management"]
+        MARKETING_APP["📢 Marketing Site<br/>Public pages"]
+    end
+    
+    subgraph "Shared Building Blocks"
+        AUTH_BLOCK["🔐 Login System<br/>One login, everywhere"]
+        UI_BLOCK["🎨 Design System<br/>Consistent look and feel"]
+        PAYMENT_BLOCK["💳 Payment System<br/>Billing and subscriptions"]
+        DATA_BLOCK["🗄️ Database<br/>User data storage"]
+    end
+    
+    WEB_APP -.->|uses| AUTH_BLOCK
+    WEB_APP -.->|uses| UI_BLOCK
+    WEB_APP -.->|uses| PAYMENT_BLOCK
+    WEB_APP -.->|uses| DATA_BLOCK
+    
+    ADMIN_APP -.->|uses| AUTH_BLOCK
+    ADMIN_APP -.->|uses| UI_BLOCK
+    ADMIN_APP -.->|uses| DATA_BLOCK
+    
+    MARKETING_APP -.->|uses| UI_BLOCK
+    
+    style WEB_APP fill:#22D3EE,color:#000
+    style ADMIN_APP fill:#22D3EE,color:#000
+    style MARKETING_APP fill:#22D3EE,color:#000
+    style AUTH_BLOCK fill:#F59E0B,color:#000
+    style UI_BLOCK fill:#F59E0B,color:#000
+    style PAYMENT_BLOCK fill:#F59E0B,color:#000
+    style DATA_BLOCK fill:#10B981,color:#fff
