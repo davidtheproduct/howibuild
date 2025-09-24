@@ -153,6 +153,31 @@ For posts published before these guidelines were established:
 - **Internal links**: Link relevant posts (e.g., Coming Up, related builds).
 - **Images**: Descriptive `alt` text with purpose/context.
 
+## Image Guidelines
+
+### Hero Images (Blog Post Headers)
+- **Dimensions**: 900x506 pixels (16:9 aspect ratio)
+- **Format**: PNG for diagrams/screenshots, JPG for photos
+- **File naming**: `descriptive-name-hero.png`
+- **Purpose**: Visual hook that summarizes the post's core concept
+
+### In-Post Images (Body Content)
+- **Dimensions**: Flexible, but optimize for web (max 1200px wide)
+- **Format**: PNG for diagrams, JPG for photos
+- **File naming**: `descriptive-context.png` (e.g., `button-consistency-diagram.png`)
+- **Alt text**: Explain purpose/function, not appearance
+
+### Technical Requirements
+- **Path**: Always use `~/assets/images/filename.png` (Astro processes these)
+- **Optimization**: Astro auto-generates WebP/JPG variants
+- **Size**: Keep source files under 2MB for fast builds
+
+### Why These Guidelines Matter
+- **Hero images**: Consistent layout prevents cropping issues
+- **In-post images**: Flexible sizing allows better content flow
+- **Path consistency**: Ensures proper optimization and caching
+- **File naming**: Makes assets discoverable and maintainable
+
 ### Images in body content
 - **Path rule (critical)**: Always reference local images with the alias path `~/assets/images/...` so Astro processes and optimizes them. 
   - Bad: `![Alt](/src/assets/images/example.png)`
@@ -160,7 +185,7 @@ For posts published before these guidelines were established:
 - **Filenames**: lowercase, hyphenated, descriptive (e.g., `codex-typo-fix.png`).
 - **Formats**: Prefer PNG/JPG sources; the build will generate optimized WebP/JPG variants automatically.
 - **Alt text**: Explain purpose/function, not appearance only.
-- **Do not** use absolute file URLs to local paths or `/public/src/...`—they bypass Astro’s optimizer and may 404 in production.
+- **Do not** use absolute file URLs to local paths or `/public/src/...`—they bypass Astro's optimizer and may 404 in production.
 
 ## Style and clarity
 - **Tone**: Technical peer, not lecturer. Confident, not hypey.
