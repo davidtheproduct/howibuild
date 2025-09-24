@@ -13,8 +13,6 @@ tags:
   - deployment
 ---
 
-# Monorepo 101: What It Is, Why It Matters, and When To Avoid It
-
 I stumbled across the term “monorepo” recently when I was researching best practice architecture for more complex products. I'm still upskilling when it comes to Git, deployments and repositories (aka “repos” or your product's source code).
 
 ## What is a monorepo?

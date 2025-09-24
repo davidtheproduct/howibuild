@@ -13,8 +13,6 @@ tags:
   - tools
 ---
 
-# First Impressions: ChatGPT Codex Opens New Possibilities
-
 I've been curious about AI coding assistants but hadn't found one that felt genuinely useful. Most feel like overhyped autocomplete. But when ChatGPT's Codex launched, I decided to give it a go by connecting it to my howibuild.ai repo and see what it could do.
 
 The results opened my mind to what's possible. It found an embarrassing typo I'd missed, added 1,300 lines of test code (then fixed it when I challenged it), and showed me new ways to think about development workflows. Here's exactly what happened and why it matters for solo developers.

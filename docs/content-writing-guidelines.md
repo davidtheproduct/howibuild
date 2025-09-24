@@ -149,6 +149,9 @@ For posts published before these guidelines were established:
 - **Meta description (150–155 chars)**: Clear benefit + detail + subtle CTA.
   - DO: "Built audience‑driven content ranking with PostHog + Astro. Full implementation with troubleshooting."
   - DO NOT: "Learn how to build voting systems using modern technologies."
+- **Heading structure**: Use frontmatter `title` for SEO; avoid H1 in content to prevent keyword cannibalization.
+  - DO: Frontmatter title + engaging opening paragraph + H2 sections
+  - DO NOT: H1 that repeats the frontmatter title
 - **Keywords**: Integrate naturally; no stuffing. Use synonyms.
 - **Internal links**: Link relevant posts (e.g., Coming Up, related builds).
 - **Images**: Descriptive `alt` text with purpose/context.
