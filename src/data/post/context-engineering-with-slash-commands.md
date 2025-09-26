@@ -22,6 +22,8 @@ The breakthrough was acknowledging this wasn't about automation, it was about **
 
 ## The Problem: New Builders Need Orientation
 
+![Building with no context](~/assets/images/building-in-the-dark.png)
+
 Every AI chat starts from zero. Unlike human teammates who build institutional knowledge over time, each new conversation begins with a blank slate.
 
 This isn't just a productivity issue, it's a **context engineering** challenge.
@@ -133,7 +135,7 @@ Use a simple table in `active-sessions.md` to persist context across sessions an
 - **Avoid MCP token burn.** After running `/end-session`, I've learned to run `/exit` to properly close Model Context Protocol connections and prevent token waste in the next session, especially when using multiple terminals.
 
 ## Results: No More Building in the Dark
-
+![Building with the right context](~/assets/images/building-with-context.png)
 The context engineering approach cut my setup and teardown time from 40+ minutes to under 10 minutes. More importantly, I eliminated the "starting from zero" problem. Each new AI conversation now begins with targeted project context instead of a blank slate.
 
 This highlights the broader shift toward context engineering. Instead of spending time crafting perfect prompts, I now focus on systematically providing the right context to my AI assistants. Like giving a new builder all the blueprints, specs, and project history they need to succeed from day one. The results speak for themselves: faster task completion, fewer errors from a lack of context, and preserved institutional knowledge.
