@@ -8,12 +8,6 @@ export interface UpcomingTopic {
 
 export const upcomingTopics: UpcomingTopic[] = [
   {
-    id: 'custom-slash-commands',
-    title: 'Custom Slash Commands in Claude Code',
-    summary: 'Learn how to create and implement custom slash commands to streamline your AI coding workflow',
-    category: 'ai-assistants'
-  },
-  {
     id: 'cc-sub-agents',
     title: 'Creating Claude Code Sub-Agents',
     summary: 'How to build tailored AI agents in Claude Code that work together to handle complex tasks',
