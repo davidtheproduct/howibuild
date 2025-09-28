@@ -48,11 +48,11 @@ Central guidelines for howibuild.ai content creation. This is a living document;
 ## Frontmatter Standards
 
 ### Required Field Order (Critical for Build Success)
-Follow this exact order to prevent YAML parsing errors in production:
+ALWAYS follow this exact order to prevent YAML parsing errors in production:
 
 ```yaml
 ---
-publishDate: 2025-01-17T10:00:00.000Z
+publishDate: 2025-09-15T10:00:00.000Z
 title: Your Post Title
 excerpt: Your post excerpt here
 image: ~/assets/images/descriptive-name.png
@@ -62,20 +62,19 @@ tags:
   - tag1
   - tag2
   - tag3
-canonical: https://howibuild.ai/your-post-slug
 ---
 ```
 
 ### Field Requirements
 - **publishDate**: Use `new Date().toISOString()` or current date (NOT training data dates)
 - **title**: Quote if it contains `:` or YAML-reserved characters. Safe to always quote titles.
+- **excerpt**: SEO metadata describing the post by using recent SEO search terms
+- **image**: `~/assets/images/[descriptive-name].png` (descriptive, hyphenated)
 - **author**: "David Webb" (unless specified otherwise)
 - **category**: Unquoted string format `build-log` (backend-only, not displayed on frontend)
 - **tags**: Unquoted strings, not objects (e.g., `- posthog` not `- "posthog"`)
-- **image**: `~/assets/images/[descriptive-name].png` (descriptive, hyphenated)
-- **canonical**: Full URL for SEO
 
-**Date Warning**: Always use current date, never dates from training data (e.g., 2025-01-17)
+**Date Warning**: ALWAYS use current date, NEVER use training data date (e.g. 2025-01-17)
 
 **Category Strategy**: Categories are captured in backend for future use but not displayed on frontend to avoid confusion with primary "Build Logs" navigation.
 
@@ -146,7 +145,7 @@ For posts published before these guidelines were established:
 - **URL slug**: short, hyphenated, descriptive. Avoid stop words.
   - DO: `/content-backlog-posthog-voting`
   - DO NOT: `/how-to-build-a-content-management-system-for-your-blog`
-- **Meta description (150–155 chars)**: Clear benefit + detail + subtle CTA.
+- **Excerpt Meta description (150–155 chars)**: Clear benefit + detail + subtle CTA.
   - DO: "Built audience‑driven content ranking with PostHog + Astro. Full implementation with troubleshooting."
   - DO NOT: "Learn how to build voting systems using modern technologies."
 - **Heading structure**: Use frontmatter `title` for SEO; avoid H1 in content to prevent keyword cannibalization.

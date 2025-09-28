@@ -1,6 +1,6 @@
 ---
 title: "Supabase Authentication Security: JWT vs Role-Based Access with PostgreSQL RLS"
-description: "Master Supabase authentication patterns: JWT tokens vs role-based security, anonymous access, and PostgreSQL RLS policies. Complete implementation guide with security best practices."
+excerpt: "Master Supabase authentication patterns: JWT tokens vs role-based security, anonymous access, and PostgreSQL RLS policies. Complete implementation guide with security best practices."
 publishDate: 2025-09-28T00:00:00.000Z
 author: David Webb
 category: build-log
