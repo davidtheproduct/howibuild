@@ -1,0 +1,11 @@
+graph TD
+    A[🚨 Security Issue:<br/>Need to remove admin access] --> B{Which approach?}
+    
+    B -->|JWT Approach| C[⏰ Wait for token to expire<br/>or force user to re-login]
+    C --> D[User keeps admin access<br/>until token expires]
+    
+    B -->|Role-Based Approach| E[⚡ Update database:<br/>Remove admin role instantly]
+    E --> F[User loses admin access<br/>immediately]
+    
+    style D fill:#FFB6C1
+    style F fill:#90EE90

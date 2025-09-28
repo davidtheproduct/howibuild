@@ -1,0 +1,17 @@
+graph TD
+    A[👤 User clicks Admin Panel] --> B{Authentication Method}
+    
+    B -->|JWT Approach| C[🔍 Read permissions from token<br/>stored in browser]
+    C --> D{Token contains<br/>admin permission?}
+    D -->|Yes| E[✅ Show admin panel]
+    D -->|No| F[❌ Access denied]
+    
+    B -->|Role-Based Approach| G[🔍 Ask database:<br/>Is this user an admin?]
+    G --> H{Database says<br/>user is admin?}
+    H -->|Yes| I[✅ Show admin panel]
+    H -->|No| J[❌ Access denied]
+    
+    style E fill:#90EE90
+    style I fill:#90EE90
+    style F fill:#FFB6C1
+    style J fill:#FFB6C1
