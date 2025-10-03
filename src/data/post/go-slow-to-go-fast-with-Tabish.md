@@ -10,7 +10,7 @@ tags:
   - developer-tools
   - process
   - guest-builder
-image: ~/assets/images/go-slow-to-go-fast.png
+image: ~/assets/images/go-slow-to-go-fast.jpeg
 ---
 
 Here’s the thing: there’s never been a better time to be building, whether it’s tinder for dogs or something world changing. Yet with all this power in the palm of our hands, we’re still stumbling.  
