@@ -116,6 +116,7 @@ This is where your brain matters most! It is way easier to debate a **500 lines 
 
 If you spend effort anywhere, *spend it here*.
 
+![Spec Driven Development](~/assets/images/spec-driven-development.png)
 ---
 
 ## Enough theory, let's put it into practice
