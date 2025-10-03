@@ -189,9 +189,10 @@ Do not get precious with code. Try three small versions of an idea. Note what wo
 When you ship faster, hygiene matters more. Branch often. Commit often. Use worktrees. Make it easy to throw code away and roll back.
 
 **Pick the right model for the job**  
-- High reasoning models like Claude 4.1 Opus, GPT-5 and Gemini 2.5 Pro for planning and design.
-- Fast execution models like Claude 4.5 Sonnet, GPT-4o Mini and Gemini 1.5 Flash for boilerplate and refactors.
-Match tool to task.
+- High reasoning models like Claude 4.1 Opus, GPT-5-high and Gemini 2.5 Pro for planning and design.
+- Fast execution models like Claude 4.5 Sonnet, Grok Code Fast and Gemini 2.5 Flash for boilerplate and refactors.
+
+Match tool to task. (Though to be honest I rely on high reasoning models for both planning and implementation, as it works well for me).
 
 **Manage session context like your life depends on it**  
 Ever notice how LLMs are sharpest at the start of a session? That is context rot. Ignore the marketing, your “1M token context window” is rarely all usable. LLMs aren't too different from humans in that regard, the longer they work in one continuous session the more tired they get and higher risk they'll make mistakes. Reset often.
