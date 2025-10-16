@@ -112,7 +112,7 @@ I have a vivid memory from early in my career. I was at the pub with a mentor wh
 
 He said something I've thought about for years.
 
-> _"The difference between successful people and unsuccessful people is that unsuccessful people are buried by their mistakes, whereas successful people are standing on top of a pile of their mistakes."_
+> _The difference between successful people and unsuccessful people is that unsuccessful people are buried by their mistakes, whereas successful people are standing on top of a pile of their mistakes._
 
 ![Pile of mistakes](~/assets/images/pile-of-mistakes.png)
 

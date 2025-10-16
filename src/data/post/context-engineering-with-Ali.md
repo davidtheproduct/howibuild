@@ -10,7 +10,7 @@ tags:
   - context-engineering
   - process
   - guest-builder
-image: ~/assets/images/Ali-lamb-kebab.png
+image: ~/assets/images/make-friends-with-pc.png
 ---
 
 As a Conversation Designer and Prompt Designer, I spend most of my time thinking about how humans communicate with AI. Recently, I wanted to test whether those same skills could translate into building an actual product. The answer: yes, but it requires a different approach to working with LLMs.
@@ -153,6 +153,8 @@ This approach prevents endless iteration loops. By diagnosing the problem proper
 ### Phase 6: Deployment
 
 Once everything worked locally, I pushed to GitHub and deployed on Vercel.
+
+![My recipes website](~/assets/images/Ali-lamb-kebab.png)
 
 ## What I Learnt About Vibe Coding
 
