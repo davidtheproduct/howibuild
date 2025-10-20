@@ -44,10 +44,22 @@ export const upcomingTopics: UpcomingTopic[] = [
     category: 'tools'
   },
   {
+    id: 'netlify-minutes',
+    title: 'Netlify Minutes',
+    summary: 'How I halved my Netlify build minutes by implementing smarter monorepo build logic',
+    category: 'build-log'
+  },
+  {
     id: 'llm-battles',
     title: 'LLM Battles',
     summary: 'How I use multiple LLMs concurrently and pitch them against each other to get the best results',
     category: 'ai-assistants'
+  },
+  {
+    id: 'mini-logs',
+    title: 'Mini Build Logs',
+    summary: 'Short form build logs for quick insights and tips',
+    category: 'build-log'
   },
   {
     id: 'community-inspo',
