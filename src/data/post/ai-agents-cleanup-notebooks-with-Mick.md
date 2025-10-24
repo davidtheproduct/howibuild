@@ -145,7 +145,7 @@ Are the agent-built dbt models perfect? No. There are still spots where noise cr
 
 *The multi-agent system did the heavy lifting. The hard part was teaching them what to ignore.*
 
-## Connect with Mike
+## Connect with Mick
 If you'd like to connect you can find me on [LinkedIn](https://www.linkedin.com/in/mick-hua-353353a/).
 
 - **Get Involved** Want to share your story? [Get involved](/get-involved) to share how you build.
