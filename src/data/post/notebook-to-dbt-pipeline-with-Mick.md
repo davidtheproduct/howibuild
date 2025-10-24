@@ -71,7 +71,7 @@ This pattern worked brilliantly: identify where agents struggle with mechanical 
 
 ## The Red Herring Problem
 
-The biggest struggle wasn't technical—it was disambiguation. The legacy notebooks and SQL files contained:
+The biggest struggle wasn't the tech itself—it was figuring out what was real and what wasn't. The legacy notebooks and SQL files contained:
 - Experimental code that never made production
 - Multiple approaches to the same problem
 - Debugging artifacts that looked like features
